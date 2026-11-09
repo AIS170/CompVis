@@ -1,0 +1,31 @@
+
+# Dataset downloading
+kagglehub
+
+# Data processing
+numpy
+pandas
+
+# Image processing
+opencv-python
+Pillow
+scikit-image
+
+# Machine learning (Anuj + Brenda)
+scikit-learn
+
+# Deep learning (Rakshil + Silence)
+torch
+torchvision
+ultralytics
+
+# Visualisation
+matplotlib
+seaborn
+
+# Jupyter Notebook
+jupyter
+ipykernel
+
+# Progress tracking
+tqdm

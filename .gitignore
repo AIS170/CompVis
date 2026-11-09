@@ -1,0 +1,15 @@
+# Dataset
+data/
+*.zip
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+.venv/
+
+# Model files
+*.pt
+*.pth
+*.pkl
