@@ -30,3 +30,9 @@ ipykernel
 
 # Progress tracking
 tqdm
+
+nbformat
+
+scikit-image
+
+matplotlib
