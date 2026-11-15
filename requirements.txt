@@ -5,6 +5,7 @@ kagglehub
 # Data processing
 numpy
 pandas
+scipy
 
 # Image processing
 opencv-python
