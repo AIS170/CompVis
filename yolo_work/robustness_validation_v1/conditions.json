@@ -1,0 +1,27 @@
+{
+  "split": "val",
+  "image_count": 291,
+  "conditions": {
+    "clean": {
+      "type": "clean"
+    },
+    "dark_mild": {
+      "type": "dark",
+      "factor": 0.7
+    },
+    "dark_strong": {
+      "type": "dark",
+      "factor": 0.4
+    },
+    "blur_mild": {
+      "type": "blur",
+      "radius": 1.0
+    },
+    "blur_strong": {
+      "type": "blur",
+      "radius": 2.0
+    }
+  },
+  "blur_units": "PIL GaussianBlur radius in original-image pixels",
+  "output_format": "PNG"
+}

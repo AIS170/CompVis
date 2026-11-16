@@ -1,0 +1,8 @@
+path: C:\Users\raksh\.cache\kagglehub\datasets\liugalhigh\beach-bird\versions\3\Beach
+  Bird Detection Dataset v1.0
+train: images/train
+val: images/val
+test: images/test
+nc: 1
+names:
+  0: bird
