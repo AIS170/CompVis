@@ -1,9 +1,0 @@
-path: C:\Users\raksh\Desktop\CompVis\yolo_work\final_test_v1\datasets\blur_mild
-train: C:\Users\raksh\.cache\kagglehub\datasets\liugalhigh\beach-bird\versions\3\Beach
-  Bird Detection Dataset v1.0\images\train
-val: C:\Users\raksh\.cache\kagglehub\datasets\liugalhigh\beach-bird\versions\3\Beach
-  Bird Detection Dataset v1.0\images\val
-test: images/test
-nc: 1
-names:
-  0: bird

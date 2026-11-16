@@ -1,7 +1,0 @@
-path: C:\Users\raksh\Desktop\CompVis\yolo_work\robustness_validation_v1\dark_strong
-train: C:\Users\raksh\.cache\kagglehub\datasets\liugalhigh\beach-bird\versions\3\Beach
-  Bird Detection Dataset v1.0\images\train
-val: images/val
-nc: 1
-names:
-  0: bird
