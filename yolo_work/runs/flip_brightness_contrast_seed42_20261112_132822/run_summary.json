@@ -1,0 +1,29 @@
+{
+  "experiment": "flip_brightness_contrast",
+  "model": "yolo11n",
+  "initial_weights": "yolo11n.pt",
+  "trainer": "FlipBrightnessContrastTrainer",
+  "horizontal_flip_probability": 0.5,
+  "appearance_probability": 0.5,
+  "contrast_factor_range": [
+    0.8,
+    1.2
+  ],
+  "brightness_offset_range_pixels": [
+    -25.5,
+    25.5
+  ],
+  "transform_order": [
+    "LetterBox",
+    "RandomFlip",
+    "RandomBrightnessContrast",
+    "Format"
+  ],
+  "epochs_requested": 10,
+  "seed": 42,
+  "ultralytics_version": "8.4.208",
+  "wall_time_seconds": 24077.56194079999,
+  "wall_time_minutes": 401.29269901333316,
+  "best_weights": "C:\\Users\\raksh\\Desktop\\CompVis\\yolo_work\\runs\\flip_brightness_contrast_seed42_20261112_132822\\weights\\best.pt",
+  "note": "Appearance changes also affect padding pixels. Wall time includes setup, validation and any pauses."
+}

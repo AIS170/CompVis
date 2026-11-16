@@ -1,0 +1,11 @@
+{
+  "experiment": "baseline_no_random_augmentation",
+  "model": "yolo11n",
+  "initial_weights": "yolo11n.pt",
+  "ultralytics_version": "8.4.208",
+  "seed": 42,
+  "wall_time_seconds": 18175.762856099995,
+  "wall_time_minutes": 302.9293809349999,
+  "best_weights": "C:\\Users\\raksh\\Desktop\\CompVis\\yolo_work\\runs\\baseline_seed42_20261111_140300\\weights\\best.pt",
+  "note": "Wall time includes training setup and validation."
+}

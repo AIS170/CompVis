@@ -1,0 +1,1250 @@
+{
+  "split": "test",
+  "ultralytics_version": "8.4.208",
+  "settings": {
+    "split": "test",
+    "imgsz": 640,
+    "batch": 8,
+    "workers": 0,
+    "device": "cpu",
+    "conf": 0.001,
+    "iou": 0.7,
+    "max_det": 300,
+    "augment": false,
+    "half": false,
+    "rect": true,
+    "plots": false,
+    "save_json": false,
+    "verbose": false
+  },
+  "conditions": {
+    "clean": {
+      "type": "clean"
+    },
+    "dark_mild": {
+      "type": "dark",
+      "factor": 0.7
+    },
+    "dark_strong": {
+      "type": "dark",
+      "factor": 0.4
+    },
+    "blur_mild": {
+      "type": "blur",
+      "radius": 1.0
+    },
+    "blur_strong": {
+      "type": "blur",
+      "radius": 2.0
+    }
+  },
+  "checkpoint_hashes": {
+    "baseline": "d225df2feaded5b680746936cc9b8036fbd52834def3e6987f3de828f2cbbb66",
+    "flips": "0c86cbdbe0bb7fd53d406f3ba8b8bfc51469141fd1b8344c7d8f3c2ce5f69d88",
+    "flips_brightness_contrast": "7e54b3d5726f4852a378632ee1e1e95cfa1f2d7f67192ca214b4f9b49ec09ec8",
+    "flips_appearance_blur": "d9272baca9f8c03704ecc286093532e5c771e9890c657e28a0fdb477ab4dfd2f"
+  },
+  "test_files": [
+    {
+      "image": "beach_bird_1661.jpg",
+      "image_sha256": "c3bc34dd2d331c0f9f3bf127675dc1cc3e3788eecdf25bea022267abd454b378",
+      "label_sha256": "ff18243276d0e1bbaa0c36d2b66ef3a2ed17150b93a33d58cd7f3d4bd3ea2819"
+    },
+    {
+      "image": "beach_bird_1662.jpg",
+      "image_sha256": "d426155d9830bd2621f85a7b6f221289f1bc416ffb6016688d876ba2f10bdd3d",
+      "label_sha256": "7fcd5186df30ab4165c83382bf851b2fbf6adb04cef02cb379ff3f4347004a50"
+    },
+    {
+      "image": "beach_bird_1663.jpg",
+      "image_sha256": "322c16341ca46adf6e6434450ac308a1ef50b963fb15885767f601f2d0b8b5df",
+      "label_sha256": "5f4aecb71d2bd778b1237cfd9cdcd74eb61c01c50b150d0ac5424f82a07c208b"
+    },
+    {
+      "image": "beach_bird_1664.jpg",
+      "image_sha256": "cde4fc6b65e39d73cf6872b4b0e3c8069867d6ab4d921750333482cac1a07117",
+      "label_sha256": "ea209fc2e0255ee8fa77eba2ec03082a53fcefb28eb7de7314a3cd9ab01aa8c4"
+    },
+    {
+      "image": "beach_bird_1665.jpg",
+      "image_sha256": "46b45ae5cc3edded791988e4100671b12bc49b0811590f0a8f147e62adb435ea",
+      "label_sha256": "173fc1b353366eacb0378dac1191efaf7827309ea6522bc568e36a76588455d1"
+    },
+    {
+      "image": "beach_bird_1666.jpg",
+      "image_sha256": "7f5e4623ccb0c0ad9b527c824c67662fecb7685810255f2b1906c242d2c292ee",
+      "label_sha256": "6469f6252b25449642ea1bf205835850fcf2d1cefcbc8060ff7d0d323c00d231"
+    },
+    {
+      "image": "beach_bird_1667.jpg",
+      "image_sha256": "fef90bcf0bf89b7f1e6036de032f57d1179a83cfd949bce1aff95586d39fac39",
+      "label_sha256": "e9e6831f325d05ad380ec5e52b40e9b720795a7dc9ee4f81201ed09aa1bb9d6e"
+    },
+    {
+      "image": "beach_bird_1668.jpg",
+      "image_sha256": "8b1314bcec59c25a4763d8b783e7a9cceace12d240382e95063a22e02e434d2a",
+      "label_sha256": "18059dbc45d42245c61927d83a35f91c9c5519e4e7e6deea991e8161d875011c"
+    },
+    {
+      "image": "beach_bird_1669.jpg",
+      "image_sha256": "9b5ce9735a7899c934b45eb3e0e845287d50ff1be3ee40da1de67753ef9c5c7d",
+      "label_sha256": "f1eff68b458e3f8a344c773821b29e25d90740b22f6758c5b1c1c9a1a95feacd"
+    },
+    {
+      "image": "beach_bird_1670.jpg",
+      "image_sha256": "f6f9dbd9982f21d37b1a227a9f9df85f0aaec27a36d03a2fa68334e6a17c2a63",
+      "label_sha256": "2dbf877ff2e57a321d7aa9792bd11cd2a9d2931799ce1f1d273617041182e274"
+    },
+    {
+      "image": "beach_bird_1671.jpg",
+      "image_sha256": "33c58d59a7f2c76d224e3dc53b02b89050e068d57f7b72681de3ab10dbb19191",
+      "label_sha256": "7deec5be9830a64b1a4e3940660445819ca66d4965b873342d382ea787319a56"
+    },
+    {
+      "image": "beach_bird_1672.jpg",
+      "image_sha256": "7f1a01383e0c8262cd92917b0a04289dc9bbe5237d088efce25a65257bd7ad9d",
+      "label_sha256": "c6a34e8e68323c6f2c935b1aa11aebe4e344107ea72a3171580f7120c0f6dd44"
+    },
+    {
+      "image": "beach_bird_1673.jpg",
+      "image_sha256": "9ba627729a992ef7cf40cf3e4fd334943de7edc6960353ef0152c088c9ce428f",
+      "label_sha256": "111b4116ce141c4bc76e9eee43ef6a63e4b27a04381cac2df0eefba80c5ad857"
+    },
+    {
+      "image": "beach_bird_1674.jpg",
+      "image_sha256": "06854389966330d96024115e8aa8afce11f6720ed6d414861bf779d94ae4b34c",
+      "label_sha256": "d4b71b63b560cb468937e8e3b1bb1c5e2376f9d9fadbedd40758ae492bbf669a"
+    },
+    {
+      "image": "beach_bird_1675.jpg",
+      "image_sha256": "94cc989e28eaed66d4aa6029c8f986ec65add94b975a767aadba98e4def6a1cd",
+      "label_sha256": "65994c2a72034d136e8ba37310cf526f6b7eda9b5dde3f33fcead876ad2748ac"
+    },
+    {
+      "image": "beach_bird_1676.jpg",
+      "image_sha256": "e0db5ac42b18c8d1b09b0498db570e666e0dee9e64ae8c35b349e90ab1a9e932",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1677.jpg",
+      "image_sha256": "e28a9533a61e4119045eb9cd427808741df5425433ace33270495271bb9a6c7a",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1678.jpg",
+      "image_sha256": "119331edc8ebed8d97a37b9aaa6ff0b13ca48fa700eee3b2a356c70ffc7fc9f2",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1679.jpg",
+      "image_sha256": "852270a9ea4b47494638e85f551348505c9cbaa64f05280d4a44821961a33130",
+      "label_sha256": "455e3fdd261b10112c3cf2bdd9567bc5e8fb1b4e1770ab6cb60cd462265bea2b"
+    },
+    {
+      "image": "beach_bird_1680.jpg",
+      "image_sha256": "2eea47d3f84d3fdab317025fc01f9be0e8e7318280938da01a88861639fb0d87",
+      "label_sha256": "2cb621f98aff46216b584526250ae9cb4611f0a09a1f0d946c017d883edc1f7d"
+    },
+    {
+      "image": "beach_bird_1681.jpg",
+      "image_sha256": "5320e663b5ac21b86374e241680aa2193f3593c210b8887acb9caa8f0d22fddf",
+      "label_sha256": "046f0d19a6ef45eafc8eb6bda6d43e5678264bb5a05aa3e6afff1fcb4b26d966"
+    },
+    {
+      "image": "beach_bird_1682.jpg",
+      "image_sha256": "aacdc6aa1f35bca4093be0b6700a8d935cfb6a85e8016c846972bdcb74afc352",
+      "label_sha256": "1f6644398dd28bd50c0a76f48d1ce787db6cf59c72734f411499efeb74b12b8e"
+    },
+    {
+      "image": "beach_bird_1683.jpg",
+      "image_sha256": "f7c70272b9faeca3db334a2239acf590b1eef85f2ceccff4eea1145f1d9f6964",
+      "label_sha256": "ff3890988dd1bc7d0be703561dec00ff35026534da99fd6a10e57ef98c8f0c89"
+    },
+    {
+      "image": "beach_bird_1684.jpg",
+      "image_sha256": "bb41b414da014aaa706ea9a0715a353c8b0a89c26e56592d13740cfaa56ab0a3",
+      "label_sha256": "0a8a0faa47919c58bf23eee6ad1057accf2f902fe7d7669bac1b5065a5ff5c5e"
+    },
+    {
+      "image": "beach_bird_1685.jpg",
+      "image_sha256": "2d1444efb54b49ac0f277cb2e385f08110347d7762d85e930c55e7a45ee387f3",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1686.jpg",
+      "image_sha256": "cdabfa1d7bbf51b3fa91b88e58ac3e16c59a1388f08bb92c6e1f9b5b887e2ada",
+      "label_sha256": "a28f7920d2eb7bd58714207e3682184e278be456aeaf7580fcf4fd6725751a0c"
+    },
+    {
+      "image": "beach_bird_1687.jpg",
+      "image_sha256": "5ee00240b142ef535d360a478913e46b7e1c8dd12b43f696f3d4eb56c4494eba",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1688.jpg",
+      "image_sha256": "e0ab9e26c24610e8d5703eab8fe8e450a7d9abe6f1ade9f3e47c8746f04484d8",
+      "label_sha256": "72063fb5ee21b89cd726096ce6dc14891101d076f8bbb9de4986060656345ff8"
+    },
+    {
+      "image": "beach_bird_1689.jpg",
+      "image_sha256": "03c10aa1b4d3ef94ffecdc7274271027eabd4a348e5c591cc5b3ca3416fc959a",
+      "label_sha256": "f352e6e4097b2853dcbdce937916e0244846b0208e47c2d114ed8aa3be46bdde"
+    },
+    {
+      "image": "beach_bird_1690.jpg",
+      "image_sha256": "3ca57ebc0b2bd2b374bd73d37d1af9e4ad71672f0d6fe4b100ea862f5ec2c960",
+      "label_sha256": "a581b31d1e86673adbe1974021b095d9c57cc95a6f28a9b79edd789d462996a7"
+    },
+    {
+      "image": "beach_bird_1691.jpg",
+      "image_sha256": "b1e63387a65e0e7d6568b55fc7b069eb17dba53e91250a490ab011100a0c6a67",
+      "label_sha256": "263a4c8c3872309d698dff0b96fa3b638114c743dcdec3410b38e383cfc3e5de"
+    },
+    {
+      "image": "beach_bird_1692.jpg",
+      "image_sha256": "9b0ace42a3e7a2a567a75ff93c62782b1094ca236c67644187de8b11c45dd154",
+      "label_sha256": "bb1ab0e402779d9bdeb6bb1889c19ff33af16bf18fd90e540f390ca1c4140227"
+    },
+    {
+      "image": "beach_bird_1693.jpg",
+      "image_sha256": "4876e2b7ca3f405556a9706a2fb7e5f6d767dffa1f68515f94d2a9ae0c4c7ea6",
+      "label_sha256": "5d1a1a431a503e84915cd9b921facd287d44f49f137937b8cad8aa7d6c13f756"
+    },
+    {
+      "image": "beach_bird_1694.jpg",
+      "image_sha256": "4b66da240649b8cbb28b0d14dd38566899eaccdc2dd9670c482875461451bcdb",
+      "label_sha256": "d1a1ec44ad1d5bc3d545f258b187d920c23b09e2e0c4f2c41fc40eb9e6668784"
+    },
+    {
+      "image": "beach_bird_1695.jpg",
+      "image_sha256": "18e78f422088e78af93a0dda0abe077ff1c94da219fda0081f035927f2901592",
+      "label_sha256": "d2b94dbe87eacda620cdbf1f230b3dd610e2eb280d2729bd9212a68189eda412"
+    },
+    {
+      "image": "beach_bird_1696.jpg",
+      "image_sha256": "053f4c6ee018f69ba81c2268d8dec6b903d96075fafc61f58b482c52e1498750",
+      "label_sha256": "8c2e1794f65d8d996cb9dbdbe7d86da358fad09a715e34878492c3cd72392bd1"
+    },
+    {
+      "image": "beach_bird_1697.jpg",
+      "image_sha256": "64a8da81671a50a0bd2f636b9980022fe8129cc332d4e320fc8b7f752ae32f62",
+      "label_sha256": "60f62e5ba7cec3e2dca2f632206989bbde5676da6f690e1826aff4deb06ca085"
+    },
+    {
+      "image": "beach_bird_1698.jpg",
+      "image_sha256": "6c3807a25092f5c7c9451f1f995fcc298751ebceb20a3db114c2b8840d9347db",
+      "label_sha256": "90af0edd4969fc5fb78846db49c15c35101321f6a26488a8710e9f5c94e455c3"
+    },
+    {
+      "image": "beach_bird_1699.jpg",
+      "image_sha256": "9eec4fb09b90ed010dc9218e14d7e557d5af693ae82335e324a25a6f33591c5c",
+      "label_sha256": "cce6568ad3fb8ff90ee34f5f5f4c38ea865d7b04bd8a7a6827a08a70b28aeda5"
+    },
+    {
+      "image": "beach_bird_1700.jpg",
+      "image_sha256": "68a90dc7b5b3ef00b550c478420835a22d94a3f0168c1c084e1c2f71ec6d35e2",
+      "label_sha256": "335a35819e7be4928ad82a1ddddbbea11717bc5625478934fcc67e1665d56f78"
+    },
+    {
+      "image": "beach_bird_1701.jpg",
+      "image_sha256": "2201dbba72927cc71abf6add9a0368262904c694e3118743b64ecea2e7f415be",
+      "label_sha256": "9e90bdaf0db39e2a6e3a5fbdb0b68f0e323c2547f44e08ad2250c6b8cd7b5971"
+    },
+    {
+      "image": "beach_bird_1702.jpg",
+      "image_sha256": "6a0fce59107dcc67ca3aee66adfb8f01e6b268e8fa33f2a28aaef443e5c0eee3",
+      "label_sha256": "0c8ba0aa718eaeeb6f20e0bbc107c8961b1783ea2796991dd57eace60be538fb"
+    },
+    {
+      "image": "beach_bird_1703.jpg",
+      "image_sha256": "7d6a7628303660a4d23798c2417066d78c9182db7b6412a09262fcbc1b86665d",
+      "label_sha256": "b7bb6007fada0df9f122264a5d25008c9be7f9b2bedf3b925503a17320567fd5"
+    },
+    {
+      "image": "beach_bird_1704.jpg",
+      "image_sha256": "79201dc722e3af6ad01799ae2e63d407709adbd413d3c03c82f634246b3b5172",
+      "label_sha256": "63c2976ff12d65fb1dc9d3ef89fd70c87d0372b4e916f77eac7621c1b84d7522"
+    },
+    {
+      "image": "beach_bird_1705.jpg",
+      "image_sha256": "5fff31f139d05d13e5efd3f0f867fb681aa58597a3903e8422d5383a7725ebb2",
+      "label_sha256": "3be58e8d7aef5629fc71babc4d08d50a42ed4a88ccbcb066cfa7d966a5eb15ca"
+    },
+    {
+      "image": "beach_bird_1706.jpg",
+      "image_sha256": "77b3c6e032acf3adc1ce31a1a81f4928c0869280f767e32606ab7c99d23a2c6a",
+      "label_sha256": "4eb74fa9e6da689dbf2967cf0359ba8db740f4d9d557018ec19da3fd952db3d9"
+    },
+    {
+      "image": "beach_bird_1707.jpg",
+      "image_sha256": "d280437014298da1ff900b6d8af6fb66716cdd810a44d699a0cb373d0e4324e9",
+      "label_sha256": "d49329b7bb65a4c0819dbf88b2a610c8dcb167ce32efeb1a1a1d3c3fcc28b684"
+    },
+    {
+      "image": "beach_bird_1708.jpg",
+      "image_sha256": "9422b3632c55f2511c121ebf8893af5556107632c50c1d0035243be80a556a3a",
+      "label_sha256": "afa8ac4a17a36cfcc3028672d34853e4547f2e29d23bfa0bcb5344e8a3f91924"
+    },
+    {
+      "image": "beach_bird_1709.jpg",
+      "image_sha256": "9010f8a19af18785994411cc18e8027b0a7ed2f5b470bf4ee9d165deb4211992",
+      "label_sha256": "2789b04d00842079c5e61c4011c65112f63dc4fb80057500a2b9a0c9c6f8ac17"
+    },
+    {
+      "image": "beach_bird_1710.jpg",
+      "image_sha256": "7d5c8255482c3ce61d31a2fca0e3bee761e2322462d5894289c6853adf8bda75",
+      "label_sha256": "202ae7514945506568e50e5bcbe2cfda4df67ff365c3949e989fdcb1dc33968e"
+    },
+    {
+      "image": "beach_bird_1711.jpg",
+      "image_sha256": "ce7a29d0b627bced23a8482ceb61be5dffde13b69a560680aa0f34d2d98e81cf",
+      "label_sha256": "e2001080eb52e32bbac7be06a956dca85ef292433d9e51939e60be3dcd79edce"
+    },
+    {
+      "image": "beach_bird_1712.jpg",
+      "image_sha256": "6116a4aa15f2fcf6b290358eedace0a2631ff08576fb3603506ce9a219e31fda",
+      "label_sha256": "755df8b842a4eef872cc33e4f4201226804d0581a89d6e16644b5d59ab51da4a"
+    },
+    {
+      "image": "beach_bird_1713.jpg",
+      "image_sha256": "0ebf416b90715f116c3f07894fd4ff1d0d4f327ea9d27b8d26876e78688e5973",
+      "label_sha256": "90e572f4f94cf5c544be4417ba48b9453f973193765cc8c1de5e960f2d96dd9f"
+    },
+    {
+      "image": "beach_bird_1714.jpg",
+      "image_sha256": "ca01b60612e73350a791afd61752c29cd3b2d4c9fc2b27bc7342c154e6bed5cc",
+      "label_sha256": "bb95d786aedac29fa1961c5db4e36a62c00bb7e6f8ce1d3eaff6959634e4a795"
+    },
+    {
+      "image": "beach_bird_1715.jpg",
+      "image_sha256": "293d52f7f2fc6245453fb95289d6aaddacca913508dffcf6b85a5e77e10daa78",
+      "label_sha256": "e2219c2e2c8ccd8b435339d4620990a1e1f4e9e2d761872fdfd04d3278930738"
+    },
+    {
+      "image": "beach_bird_1716.jpg",
+      "image_sha256": "714103a70d962429c8c9ee289eb847ba7ce68ff8984ba6a35c8f3aa72c0bd909",
+      "label_sha256": "a978ddf6b6c5868b49087fc2931e8702effff85ffe87efe17c81a897212b0522"
+    },
+    {
+      "image": "beach_bird_1717.jpg",
+      "image_sha256": "a925653321aeb04a0c0135c7450dcb03b780b9b5e8ba7e5691f33f71078bdc53",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1718.jpg",
+      "image_sha256": "fec9d6b0a312186d1f946b8d920139a794970abf47a7c04b97fc489b047037ed",
+      "label_sha256": "a8b7ffcf3cea4adbc25469eb0af6eb14249a9a2e2e48b6221fb0df7260b8363a"
+    },
+    {
+      "image": "beach_bird_1719.jpg",
+      "image_sha256": "479370932190da1d7f8c2d12badb47a291f497a10a00ccb38236318c6ac02a8d",
+      "label_sha256": "69ce30ece1ebb60a9c77ca14c43a26bcb2733a9acf41191eae2af820ad3f446b"
+    },
+    {
+      "image": "beach_bird_1720.jpg",
+      "image_sha256": "cab5ce4958d70f89c6f644adaf94bee90d23734b166f31c2545c10b81eae02da",
+      "label_sha256": "edde3342f399a45f1a40ab0ab195a704f763d2bd54ac1b8d7441e3a18054066d"
+    },
+    {
+      "image": "beach_bird_1721.jpg",
+      "image_sha256": "15c230e112b0a182017f4204ac9703221c815eceba451c1f82e388e275e2405f",
+      "label_sha256": "44592480e69e6d012ebddefffd79d95f33e8dbb943141a30f521bbbc1da62fea"
+    },
+    {
+      "image": "beach_bird_1722.jpg",
+      "image_sha256": "a4b8446621d510f5e1935ca7622deb514dc751cc1a3059d1b724c4ffa7f08647",
+      "label_sha256": "9c03f47bd7fc433823fee18da4af65d208403dc98446fb034c94ad95e9d5802c"
+    },
+    {
+      "image": "beach_bird_1723.jpg",
+      "image_sha256": "2757a282bf0cbaf2f1af56c189670994d662f35b8615140b80bc94df2bbd2106",
+      "label_sha256": "74ccdd6d87562c0ffdc1be767b29f3121cfdc9a94c0d8d7bb5b5dfe2d5144192"
+    },
+    {
+      "image": "beach_bird_1724.jpg",
+      "image_sha256": "72c8beeb9f7a61fbeda75d247ccbbf6c1940ac2be18982d0f7943dc744bab72b",
+      "label_sha256": "e0703e2f7cdc0f846f813ed713ae5e69bf318e0a85b3a5f4431f898d94922ba1"
+    },
+    {
+      "image": "beach_bird_1725.jpg",
+      "image_sha256": "340a57efa8d2e96ab22bd3b05e617a72b74a5b13371a7ecc66a7010d2d7a68e2",
+      "label_sha256": "c115f2c41195fe992c7ffc517717b98dbe382435c711cf50e74dfeef0c592eed"
+    },
+    {
+      "image": "beach_bird_1726.jpg",
+      "image_sha256": "053ed4f7c34e3c9b480f38446bb489f9ebaa27dda4fc78b83497cee4f8ec3ea9",
+      "label_sha256": "a1b9ab383f3334eb9f11bc15943d9b8cb370f52827fa1a1a6a862c94349f8287"
+    },
+    {
+      "image": "beach_bird_1727.jpg",
+      "image_sha256": "6850f5fdb30992522544a4acdc64418df3accfa296436bb16491fc41c466ae0a",
+      "label_sha256": "8539591fcc000e69e90373a83e109e9f311b4a7da561ca2f8c02f907329fd510"
+    },
+    {
+      "image": "beach_bird_1728.jpg",
+      "image_sha256": "72f4aa9c56e5bf2db691b6c727f168da467c87802bc230db4e2701cc0d6969cd",
+      "label_sha256": "9ee031aa674bae45bf9f2402700afcba1c2ba8af39b33be7a32f9599db339cec"
+    },
+    {
+      "image": "beach_bird_1729.jpg",
+      "image_sha256": "1cfd3b923388211c6c17497551c484b6187513d26b8a7bfa147185f1b64222a3",
+      "label_sha256": "a54674365a96f163e99e5521faad7a0222db6adfc6a12702e89df8dfa88f26f7"
+    },
+    {
+      "image": "beach_bird_1730.jpg",
+      "image_sha256": "584cf2d00d77cabcdd3e46a16668a277ce9ca7d209589233e051e552a64711b4",
+      "label_sha256": "6abb4981fd3bc529af19b099d9a93a78dea09e90d097a60c4251decf6c74d528"
+    },
+    {
+      "image": "beach_bird_1731.jpg",
+      "image_sha256": "bcc1ea1749e567daab407dffeb169e532d191b49cb91ee98c87cbd8f4a66d972",
+      "label_sha256": "c1da3ea2abe49f494cd8139c2d9fae7eb07209e3add4b473c8e79efd3bc833a3"
+    },
+    {
+      "image": "beach_bird_1732.jpg",
+      "image_sha256": "31ab7005cf274b9b4fd4894741f337fe52a704a23e27567073f20c3a7edaf2d0",
+      "label_sha256": "2b9685fa0fb316e0a1ac32c21498d5cae5c6226dacd92c45e798c9f6b964db32"
+    },
+    {
+      "image": "beach_bird_1733.jpg",
+      "image_sha256": "c9db942583f7fe7f32e3ec02fed1760e480fdc1d2390140860be3248fa7f90e9",
+      "label_sha256": "d71b7f341df07aeb3176899382046422a37ffe20548aba8e8ce9a8f4609c0edb"
+    },
+    {
+      "image": "beach_bird_1734.jpg",
+      "image_sha256": "7748025b7db71e6ea73ffcf7c6445baa2dba3c8159ef71125bf45eaa3434a12d",
+      "label_sha256": "fe209d0ce810a842af907d45b356af21387529a841464c3628c1e20f2a3904d7"
+    },
+    {
+      "image": "beach_bird_1735.jpg",
+      "image_sha256": "568185897453072fbb71e359913679bdbfbd0e80ff26268360c02e97da5f21ab",
+      "label_sha256": "4da9aa40cc192da1a40929332764b96485a441280bfb0f8e3f1e35148252a18f"
+    },
+    {
+      "image": "beach_bird_1736.jpg",
+      "image_sha256": "bdc6a3376b1115525d67149f23ce71baa68ae20c5253b3426e8c626c7e5ee8fe",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1737.jpg",
+      "image_sha256": "a320384c14155a94f5eccf3def015ea2a420a700d3ff4ef5d846519922291e67",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1738.jpg",
+      "image_sha256": "b2aa568af32dd8747505519d62a4dbb3845b3cb042cd4f32079862858fb645f8",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1739.jpg",
+      "image_sha256": "85b1f61d8cb2d77224de45eeabd3d34ef95fd62525ba585ce2d20ffa00977052",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1740.jpg",
+      "image_sha256": "1341843fdb41660abe9a257e978e0a28963b2a9ed30d89bab9d0687ac96bb9d0",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1741.jpg",
+      "image_sha256": "dadb48fa6684c270d73f3ab5cf17ad86177a26ed3c46c43298159302e0d8c7ce",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1742.jpg",
+      "image_sha256": "e7ede5b9eeba2ce3ef468a4482ed6ae76d9138b1ddff2b594af1d64357903b46",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1743.jpg",
+      "image_sha256": "ae8ccb5e10c88fc61d7f7a0029d82e08a7bd55b304cc8e3a77209603d1453682",
+      "label_sha256": "d4e1bbf116843d46052f3aeb9e2bb35a149c85c56268a6b515560be150bac754"
+    },
+    {
+      "image": "beach_bird_1744.jpg",
+      "image_sha256": "3348d2e20057796a6b4d1a43fe955af1179a9b44236863b84b2dec18314d03a2",
+      "label_sha256": "8a3205264acee53f18a1027769a4ee715b3d27113c62b4a70715dd519bbe0516"
+    },
+    {
+      "image": "beach_bird_1745.jpg",
+      "image_sha256": "6b56759dec7ed99974ee82effee5aee492696050b4e6312952b38b13c82eb307",
+      "label_sha256": "b75e49b8509f1a3206d8d9598b6624d052813a869d34d5ec06fe8ae869d9f9f6"
+    },
+    {
+      "image": "beach_bird_1746.jpg",
+      "image_sha256": "8a34a8b8983637dc00fdfdad0e5dd55683a1c027b5df677935fa3c4d500f21fe",
+      "label_sha256": "109afcfc5be8e211c86469ecd543960fb9bdcc1e7d4de688e977887615637a3b"
+    },
+    {
+      "image": "beach_bird_1747.jpg",
+      "image_sha256": "1876bb5de0f5619a2936cd9a9cd24154be1db24f13e6250cd30580eb98b4e1c2",
+      "label_sha256": "ce8f7a003c69a75f74b47f750a17a8db21c41de5d4347b1eeb460ad9071534ea"
+    },
+    {
+      "image": "beach_bird_1748.jpg",
+      "image_sha256": "2edbf419b193d116f0fa8e70f2a7a4584d49084ec26413855e87dedc481627a4",
+      "label_sha256": "2c95f22bd780d6d91f3204e1f3fc6164cb9ef3fd61979761d656de531f762eb2"
+    },
+    {
+      "image": "beach_bird_1749.jpg",
+      "image_sha256": "e7a0798f6b8fe744cabb9161028a3b07fcf363e9e868d20bb454e55eca093d87",
+      "label_sha256": "f718670e548f8ff01fd4338f1ff19eb4d273c4b32c83eabf1ca05caf46a03be7"
+    },
+    {
+      "image": "beach_bird_1750.jpg",
+      "image_sha256": "d22c666695438d734cb7de03cb19adb190e48ddd1f60e01f71813f07810ac89d",
+      "label_sha256": "adf419c441400d327f0a8012df52e9cea50d9288cd4c05a07f2ca2c1a23b4cee"
+    },
+    {
+      "image": "beach_bird_1751.jpg",
+      "image_sha256": "828500db5fff433e616afbad19d1bc65f0677654391948ac037ce1eb9cab40ac",
+      "label_sha256": "9342aff3851b01b42cb50ee803d4f62da188a10811752049da2db42bbc1d0141"
+    },
+    {
+      "image": "beach_bird_1752.jpg",
+      "image_sha256": "11cecc149ba92b53f037a4533f3544b198136ba48317a4cdb659ad6a1ec6d5bc",
+      "label_sha256": "038efe3ddd9a79733f2e319a48829b7f615c811d3f6ecf8ddc0d588c649dbede"
+    },
+    {
+      "image": "beach_bird_1753.jpg",
+      "image_sha256": "8d018bc13985cb1f3d6f21f59c6add9f507cef5e76b6981edee77f18b8a1a707",
+      "label_sha256": "024c73cb98539ad1d55801e5847004a85590d1e4b08d9a8b248262dda8d02e92"
+    },
+    {
+      "image": "beach_bird_1754.jpg",
+      "image_sha256": "c4ed9cc28fac88bf4d449f04d81fd8fdc4b9bb6e47f6208157e2bd213cbd369c",
+      "label_sha256": "ad268a77fe1007648ce6dd32abff33bb55896c7557fe09afcd6108d41d6e095f"
+    },
+    {
+      "image": "beach_bird_1755.jpg",
+      "image_sha256": "a9065d8ee3702411e6a203846c429f5a64d6e1547a45b3b98ccda7a7e77e0435",
+      "label_sha256": "761933d0268ccbe01b7d3a98dcd25eac62894e8f1822dfa1a530eda360f58b8b"
+    },
+    {
+      "image": "beach_bird_1756.jpg",
+      "image_sha256": "dea8b6c7ddf886311cae302507129289ec0d00666dd208df2d391a44adce3454",
+      "label_sha256": "19a072c1658cc24610dae2806d126a3c4d6c0df8c8bce681f1f312783eb85a36"
+    },
+    {
+      "image": "beach_bird_1757.jpg",
+      "image_sha256": "aea1f002df071996796baa20f09c6d8415938ac8d7af55181d48c505adbf7bd7",
+      "label_sha256": "ea10171aaea8903274ca856ceea6464fc41ddc3f76443f7aa052f22fb1dfb782"
+    },
+    {
+      "image": "beach_bird_1758.jpg",
+      "image_sha256": "a9c28290ac484847e1046df51443bbc280fefe6cb30dbc1a2558a70a88afe804",
+      "label_sha256": "75980eeb569268f2d2ae6e482c279c7989c6be39c3f5cd766d6f97681af6ca35"
+    },
+    {
+      "image": "beach_bird_1759.jpg",
+      "image_sha256": "485483e4bd3dd14bca6b308ca56b79f9fa54c46216ce47c22d694a0607f46b53",
+      "label_sha256": "40bb7763d5973ab8b024b112014cdf396fbaad5e3d3cad86509a7b234966ee64"
+    },
+    {
+      "image": "beach_bird_1760.jpg",
+      "image_sha256": "8b1b1477090858896ab22a066c3a2e85e651ff49d4695d6b968e926683092b4f",
+      "label_sha256": "85afa9d6e890b1dd60b4df87c48772c99c9f1cceb1a9d83541163bc930b3d0fb"
+    },
+    {
+      "image": "beach_bird_1761.jpg",
+      "image_sha256": "7e3f908a83f8c7a930884b084834c970d2089001a885d031cbcb5b40758425f9",
+      "label_sha256": "2a60fdcd6ba2817ba5464103ffaf44b55cc0422585cac4e4a9ea5994431df7e8"
+    },
+    {
+      "image": "beach_bird_1762.jpg",
+      "image_sha256": "00cd8bc6fbd787e69684490692abf8118c7b1ad636dd1ec70bf1ac40dc43c369",
+      "label_sha256": "d4368385c03f7a1387a8ccdfb680d8b250043ad0369acf4d6c05149d1663e580"
+    },
+    {
+      "image": "beach_bird_1763.jpg",
+      "image_sha256": "c6f2d98758d5f2c9fd77f5f70d42f01e66b336ac1d5bff5e26e3d011286dff5b",
+      "label_sha256": "654929ada06e0037c02c441fb5efb0ae5e3b6c6b57e762339ea339843a3f702d"
+    },
+    {
+      "image": "beach_bird_1764.jpg",
+      "image_sha256": "c88aff672aa62eaf3d827333966074c5ce17da7fcec4ea29e79ebd8dd20258c3",
+      "label_sha256": "60ef94f3ed4d684cc954887f65454afc30613d2f742eeba8fdec9b7dae3464d7"
+    },
+    {
+      "image": "beach_bird_1765.jpg",
+      "image_sha256": "af449d4dce9825cbc06fa5d5bc3a61b6b2a13447e0c0d89a5a201702539dd278",
+      "label_sha256": "cc46232e79b997c274b647a8def8a21861255438afd4322fc81f2adf915b9d80"
+    },
+    {
+      "image": "beach_bird_1766.jpg",
+      "image_sha256": "f76b141fe5892ae21e7cbdf8304c356f3c1b9e5588f3a7742836a2f57ae8597a",
+      "label_sha256": "6705a1e41d0394f4c792cf39302694189923311ab1a7a1990c3b442e93dd6283"
+    },
+    {
+      "image": "beach_bird_1767.jpg",
+      "image_sha256": "1d0909a83e7ad55fcf30d3fd80735d6a6cbe3c3146297e9c7d80f1b87eed40f1",
+      "label_sha256": "85eb24304436e1601fe75e217bb2b8b334071ed9eac10f085d94a32f32b1ac8a"
+    },
+    {
+      "image": "beach_bird_1768.jpg",
+      "image_sha256": "7c5e66f5e92e64f19b73648ef01748fdd29c3937e7617e9a85c7b1485fbd7dd7",
+      "label_sha256": "c04b1cf64ffce1d9d0c00ebfed2396b172095cf2c748a6f01152e8c75ba0ba0f"
+    },
+    {
+      "image": "beach_bird_1769.jpg",
+      "image_sha256": "29b9e5deeb30436e38dc0425af05fc62766901387030b550c93aeb26cd993b5e",
+      "label_sha256": "9be859d3cf0f29d72ec26f9bdacd4d31b6992440bd388ff7037ed1f792250592"
+    },
+    {
+      "image": "beach_bird_1770.jpg",
+      "image_sha256": "71cc9786cd0c5475cecfcd71cbbfab00b39fb776144815ffce59b2709e1c70c0",
+      "label_sha256": "6b24b929663ff399d9c392fd1f04fba24d138a24e745a830f8b426f5f6b68069"
+    },
+    {
+      "image": "beach_bird_1771.jpg",
+      "image_sha256": "c990cca93387329c689ebb63a0f354351365fe24c94f7b0466560e3206bfd199",
+      "label_sha256": "4406360cc35e6ff9156d8adc8c7d31b17ed3cbf113a7a5c6b0c8d3d5f7ff3574"
+    },
+    {
+      "image": "beach_bird_1772.jpg",
+      "image_sha256": "f271da772edf3b8aa80cb6b86982a7867ec27ac83afedfb904124f08df98262c",
+      "label_sha256": "97c421dd65370b29cbfb42d14278e0409341c01393413b11acd4e6d3b43c7d73"
+    },
+    {
+      "image": "beach_bird_1773.jpg",
+      "image_sha256": "4f7416c81c3ed706798e0534d066d1de9a33e333ec39682d32004559c5578139",
+      "label_sha256": "93dca209040d752e2589fd59c5060136ec7c52de82e1d69ced0d585b1ab5e61d"
+    },
+    {
+      "image": "beach_bird_1774.jpg",
+      "image_sha256": "dead24dff7eca818b42ee36401d37f4d778044343f8201bc5c923cfe595478be",
+      "label_sha256": "ba1121105463a3d5f3d7292decb9141d099be4453c58620d9357019ea5abd22f"
+    },
+    {
+      "image": "beach_bird_1775.jpg",
+      "image_sha256": "91039a3174f4036ee5363b0e1ae8e7ab5bd6e8344cc628ba718199a71ab7c73c",
+      "label_sha256": "f5f2a6bc36f8de2ae08486071045d4de6e017f8be42fc97eacefa8cd47022b13"
+    },
+    {
+      "image": "beach_bird_1776.jpg",
+      "image_sha256": "d61a86da40fd021cae6d53f47d492be32581bb7bdd1f4f98942c61932a4529a4",
+      "label_sha256": "1a431b7732d8d54c0a70020808c00ffc1eacb327df412a79597567059a6373d1"
+    },
+    {
+      "image": "beach_bird_1777.jpg",
+      "image_sha256": "2f96e217eed38cc062c3948d73127bf68a07f148088373c168e88b64be1f5f35",
+      "label_sha256": "97af1fcff7547093ae11fe07cb9613377b80f3336787e13b8bbde314970e988d"
+    },
+    {
+      "image": "beach_bird_1778.jpg",
+      "image_sha256": "7e6e63bebe01249bb1ad7c4e738474e26092169c33551d1967cb9838aa8cce10",
+      "label_sha256": "bf1c078d1adb465ee9d0417b02783b116eaaf7fe8a3de7f5fcc9375b4cb8dc9d"
+    },
+    {
+      "image": "beach_bird_1779.jpg",
+      "image_sha256": "92f2b3b3de1be343f5fea70d375bd2bed728cd5670edaf8468bac40c9cf886ab",
+      "label_sha256": "c64d951fa886555612bd830563be18b39045adc281bbc41e17628ff7b24d009e"
+    },
+    {
+      "image": "beach_bird_1780.jpg",
+      "image_sha256": "a013ea902ce0b88fb9a903a9b9e8659769e65356230a28c8076ac63b5978a25d",
+      "label_sha256": "d17028d10f399e009251f3c7cd3e6baf8a852166456243c4376dc5bc786851b4"
+    },
+    {
+      "image": "beach_bird_1781.jpg",
+      "image_sha256": "44e572d999cc6a52075fca40b1c917f9fd21d104c9dbf608413178f18fbc8951",
+      "label_sha256": "d9ac8b89240b680b40a86317ecb88f3996168ef31f44e2402f5323d5172147b6"
+    },
+    {
+      "image": "beach_bird_1782.jpg",
+      "image_sha256": "a220dc710aa3f79295fece2ea22fe85c100880d2e3654db1c24cad74fcc5b64d",
+      "label_sha256": "3763a7e61dd7ec51ff325c11d9cf7cf5433682f3dbdc02829c085951b0e989ee"
+    },
+    {
+      "image": "beach_bird_1783.jpg",
+      "image_sha256": "b42b60c8e3a32a9c445252ebb0e26a4f43c4a96540cdb90ccd0cb6a6fffd78de",
+      "label_sha256": "edeadef75419f57200fa517ed6e41920520807db4adc7276f69e1fa6482823a2"
+    },
+    {
+      "image": "beach_bird_1784.jpg",
+      "image_sha256": "198c5157b623513d005cd0483b68d540ae3061e6888cd0101dada37be0da385c",
+      "label_sha256": "02206725c26d436ffa5b85c37a71fe16782a76772f83adc4909a779c55ff09c4"
+    },
+    {
+      "image": "beach_bird_1785.jpg",
+      "image_sha256": "11d8c14a10111349c782748af7e2c7b951152ce258916aad77dc7bdc603ca20a",
+      "label_sha256": "77c919a2120f315c33c542d95b845657c2ad2db8cd3e51d5d0b1494d448811dc"
+    },
+    {
+      "image": "beach_bird_1786.jpg",
+      "image_sha256": "8b145dddf0b49930139b1811236567295cba592d5354cbf9521803850008bb9c",
+      "label_sha256": "00e7aa6a676ae1e41d006ece6f86bd55a74b8743e9d1ef0091c69438dd67311f"
+    },
+    {
+      "image": "beach_bird_1787.jpg",
+      "image_sha256": "9797585cd8e012552ed4f5b46c64e910a8eeefad7edc20328ada3aa6ee8b90f6",
+      "label_sha256": "f061ebcbe304403bd7f577ce42eb6e81d8e514a91b10b2023f6adba4eed29414"
+    },
+    {
+      "image": "beach_bird_1788.jpg",
+      "image_sha256": "44693e6601ddb3ba54384bc5bb06164f6f51a593179583164c5edf1ad5354802",
+      "label_sha256": "c4fe882dec717f1573fa16b83d5c10cad2f6fca45d7fd6beb3565bbadd804f2f"
+    },
+    {
+      "image": "beach_bird_1789.jpg",
+      "image_sha256": "aae547ac39b3b66b31c8939a079f04d473f7a4c0c7e0688f7b4b40085cc40d06",
+      "label_sha256": "d5dc41c156296c4ff09c26b0169893a49d08f34233c26159051da760e8bd1bc2"
+    },
+    {
+      "image": "beach_bird_1790.jpg",
+      "image_sha256": "b384b89fa5f581f5e65db766590cf5cdd6c6757e10f7b66b0e3ee3d0cae4d590",
+      "label_sha256": "6da89202ff74f84baeaf6cfac39086fe48ddad16025d73a0a6a4ba07c836f2c2"
+    },
+    {
+      "image": "beach_bird_1791.jpg",
+      "image_sha256": "ace7bbce3a2217a03e1be57391684c6f1b948c28fce5914fbecef69593c72513",
+      "label_sha256": "963812a7db4dbb2a03e94362e4e15f09813589967b082001bdcfa26694176cb0"
+    },
+    {
+      "image": "beach_bird_1792.jpg",
+      "image_sha256": "1b8b75ec52023e052e759261db1ad5376261475c3a9cc1489c8d6f876b4f6a4e",
+      "label_sha256": "fa0a14aad0994c7aaeaf0a2b097cf43e15f401414d0e4862d56360de5de899ba"
+    },
+    {
+      "image": "beach_bird_1793.jpg",
+      "image_sha256": "031eb87ad7b85ef1578fe05f3f5a10bbca4f9fd14e6afaa12a854d5eac1da49d",
+      "label_sha256": "0d7cb4de8b2b87b4820f5f70d585560c2428dd9747b4199278cd21f579669650"
+    },
+    {
+      "image": "beach_bird_1794.jpg",
+      "image_sha256": "a1a19a4ed008b3cf9eb7e950407ebe8eb5af16450bd627a2bc23ceecf8c302cf",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1795.jpg",
+      "image_sha256": "edd84c82bc36a4ae638a9858f84050c50a49f943779f9d5133e8927456d577b8",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1796.jpg",
+      "image_sha256": "7b924382db8abaf7b035d514d4cb5d5c8634eef4e5d0966893839b7e84c98d36",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1797.jpg",
+      "image_sha256": "c9c7e1002da1a2baf5185e21fa9d8d289f21c3fdb061516d1f287bf14e83b60c",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1798.jpg",
+      "image_sha256": "5958f9802c55d92d3fd468be5e0e89405962d587ff4709a064c776a34ae21cff",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1799.jpg",
+      "image_sha256": "f0376a184ce9d79814fe29503e51c8be71a0229fc943cab1ff6a63a994c3c2a2",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1800.jpg",
+      "image_sha256": "f507da0d872c6fc5cc41c177210353094351c5584b1210fb378a55018f624acf",
+      "label_sha256": "cd53dfa3ba7a41c93602319d44b563021f11441ab65cb316a76cf539baaf4928"
+    },
+    {
+      "image": "beach_bird_1801.jpg",
+      "image_sha256": "c4ea519772ecfb9f73645470059ab71bdaca99fa64ed1bfc3426aae9da4b8e00",
+      "label_sha256": "0f5d2d4137665627d366cc5c506052c1b1bea0469fba17b10111c2a1d354e249"
+    },
+    {
+      "image": "beach_bird_1802.jpg",
+      "image_sha256": "5b8873dca48d9594b1cfe51d094f511fbf37d96b59a3a09ac5e62d0358b10a95",
+      "label_sha256": "2e84e767191318cd8682495897616991c79ce362465816640c64163ef47c92e6"
+    },
+    {
+      "image": "beach_bird_1803.jpg",
+      "image_sha256": "47fa309a1272f3ca39500ac901c503b3793ae57dab46e0e84095f7e9485ed615",
+      "label_sha256": "ac6b5473d099fffe47c5fd8311d8d2ff48bee8c04043f379c4d4aa410d183b8f"
+    },
+    {
+      "image": "beach_bird_1804.jpg",
+      "image_sha256": "c37232335d4d8ae62f49918fa5f5cb6241288a938d1329d9ddb9f9d7c4a54ad0",
+      "label_sha256": "45c56d70b8fe988e88da3bac2eaf5067f3aa3b15478398016bd7c1d4f8a89aab"
+    },
+    {
+      "image": "beach_bird_1805.jpg",
+      "image_sha256": "8904a22621fdbdd42ddae45aeeaae7d916b2353604f8be09715c86dec0776f60",
+      "label_sha256": "855be4fe56ce10198e1ed3aefc978ea9c82a91f2e92ba429f80586d1e9fbe9c2"
+    },
+    {
+      "image": "beach_bird_1806.jpg",
+      "image_sha256": "641f96b3114e5c7f243b6040e1f8172909b8afcda200973b59a3b6e88047beb4",
+      "label_sha256": "bbe79a5371052b7f67f76b3e331b3d535b8fe603bac6ef05592a2862b6eef5b5"
+    },
+    {
+      "image": "beach_bird_1807.jpg",
+      "image_sha256": "9126f5e4784158201dedf7bee14aaed5cb8f2190249c48181e74419b1dc8f06b",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1808.jpg",
+      "image_sha256": "514533b36d5e2878839bc92f95c06a62e2ceda3de5e36a5a01aa2600441b537b",
+      "label_sha256": "ce617efe39b8e7a5d4f1bc801df4d1c99841412bf22b214cd692625d1251c4ea"
+    },
+    {
+      "image": "beach_bird_1809.jpg",
+      "image_sha256": "84745398a5a6214159434412847c9255769950ce216731440c7475445ccc1f63",
+      "label_sha256": "7c4322b0dc5cfa57f1df20fb071c346fb81264b8d2f0cd4ecc91ddd02c9e9494"
+    },
+    {
+      "image": "beach_bird_1810.jpg",
+      "image_sha256": "ffcceb2c2d0b46e911c3f7746ea354e389186bf57ba9310895d059fa62c636d8",
+      "label_sha256": "4f6f5e7dba5b57f3275cc3a3dd55da3af5f401d624e462958688437dec912a83"
+    },
+    {
+      "image": "beach_bird_1811.jpg",
+      "image_sha256": "7b34a98c59ba676149e260c0b63cc67217a01639dcf70cb7710dfa3cc23b45d3",
+      "label_sha256": "9afbf4a646f155f5b456d3fc4bf1ed3c004f089c2a9bf18ebbf71a069e8b84ed"
+    },
+    {
+      "image": "beach_bird_1812.jpg",
+      "image_sha256": "8cccf517febd32d5691ad94dde80f528d5f649c1fc6e053b5adf073b5d7b14a6",
+      "label_sha256": "56708229d59b3bf53430100113fd984db7d9ec84b08f29d3218bcefe8c1d96c9"
+    },
+    {
+      "image": "beach_bird_1813.jpg",
+      "image_sha256": "c2c510f92eb364430a4d77de71e6830bc8c73bc3dc4e2e5a11869a7a8691b21d",
+      "label_sha256": "895591d8d93983375007d97b18e010df6f4793967788ba3abc622a9c44edc3d2"
+    },
+    {
+      "image": "beach_bird_1814.jpg",
+      "image_sha256": "7f9c2569cebf6547cea5c6958aa4907bad1247881d03ac3a53807094f97d6c4e",
+      "label_sha256": "ef0dca48d1425147a1d6e4bfbe6ed50a464ea7a01bc8b13289b1a9d43fb1b0bb"
+    },
+    {
+      "image": "beach_bird_1815.jpg",
+      "image_sha256": "56f832aacb8f2b82d760f4e591524669d20b5238449ff6030427e5578c9dd442",
+      "label_sha256": "87d1052d4a51b6c66d2edfd7f1474ed35dca02cc9a56c99a90c4d892b72583e6"
+    },
+    {
+      "image": "beach_bird_1816.jpg",
+      "image_sha256": "0984797c276acb05c68522eddea52eef2041d250f84dc96d77016db2e8e53e7d",
+      "label_sha256": "e81eb99d10133b709fa333c6881a7a90a46c3cb3109a7e2075d4a48a0133326c"
+    },
+    {
+      "image": "beach_bird_1817.jpg",
+      "image_sha256": "48ec7ca00b7146d569592956a05176fc8e6d21223559e32303d157846c76a8b7",
+      "label_sha256": "7e03417e672e1fa7caf16774817e24a61553ac39b1c1def09b822bc0a2428b63"
+    },
+    {
+      "image": "beach_bird_1818.jpg",
+      "image_sha256": "49c2f29b8dc20d9e5f89cda54ffeb0484dcec3edcaf54e9b660973a049cf5f8f",
+      "label_sha256": "49cbd57e89d879a1a4c57c24c15d9fb721de556b7dd203b950c16704deb1c469"
+    },
+    {
+      "image": "beach_bird_1819.jpg",
+      "image_sha256": "5b0d67622070318bf2cfc73e3e92dbc396051998abb98b787eb08f5358667d70",
+      "label_sha256": "0c8245b153c33d40b51bfde803a9f56ce5f4afa2d354b65043c37e83add8c41c"
+    },
+    {
+      "image": "beach_bird_1820.jpg",
+      "image_sha256": "63ce2994e3bb1ed9e8f09867431d24ccfe61860b96cbd23ec6e18d8a0448ae2e",
+      "label_sha256": "e534915ff5a7bc17f515df1afe277f46537cefe32fea2d8e88132d4270117d56"
+    },
+    {
+      "image": "beach_bird_1821.jpg",
+      "image_sha256": "921b095ea6f2760319d6e67c5e91f3589e9c8d26edc60fd99ce07908ce68ff20",
+      "label_sha256": "834b0682659ff0be72c96ced262e54e72ef403f67de6ff99163fd4437a15b104"
+    },
+    {
+      "image": "beach_bird_1822.jpg",
+      "image_sha256": "afe5fec8f89f9eb38da2447a2e2a58fdfedb40612f4364e0ac4d0c7e99ff1697",
+      "label_sha256": "871b810491220876ee9c7f0f6d39748288206bb91bd63af25d1b0446c1450516"
+    },
+    {
+      "image": "beach_bird_1823.jpg",
+      "image_sha256": "452141bf592949bcb5b4399a5a44cbe0a82e4321fafba211c002309326cd801e",
+      "label_sha256": "1885ca02627e24e1ee42442de4488968eb31c150161c7b2512761b88c3d9779a"
+    },
+    {
+      "image": "beach_bird_1824.jpg",
+      "image_sha256": "07b1f1c21d8cf0ecbcfd1a637fff8227246910dbaa5fd1087d4c1914d8a4d4a1",
+      "label_sha256": "e8358a6fada54675b55b1c282f0faeb0ddc41d7462456547601c7d1348d4f805"
+    },
+    {
+      "image": "beach_bird_1825.jpg",
+      "image_sha256": "db1c0a3610c9c87c0bb91d2ac189469b6f57b7b8d8b788bb79b686ec63ea4d51",
+      "label_sha256": "c42182a15ea39a0633d0b713aac42b8bf622d5c2b02dafdc5d9cf677d32f02bf"
+    },
+    {
+      "image": "beach_bird_1826.jpg",
+      "image_sha256": "b818449c20c77ba4c84bf8e817ed3c854725c3a1afed5acfbd64546902cf2834",
+      "label_sha256": "e0de6a8feea17d463bc88592ff5397fa0dd4427fcca924c3c12f7b27d1e4c4b6"
+    },
+    {
+      "image": "beach_bird_1827.jpg",
+      "image_sha256": "732605c1938a89d865bb9596bcdfae1c7261f71043b28ddeccd6993ad4197586",
+      "label_sha256": "d32fa41bb8a08363f7c4a553543a15623bd3fc031dc1bb038e5c0558e9c01649"
+    },
+    {
+      "image": "beach_bird_1828.jpg",
+      "image_sha256": "c36d784f43b422e2ba4e3c4d922aec0295018cdcb34d0459039d0f72a2c654e9",
+      "label_sha256": "a924c71ebeb7505d639c4b4addd0aee455501e8f0dda0b06cb1847baaf264dca"
+    },
+    {
+      "image": "beach_bird_1829.jpg",
+      "image_sha256": "5a9a48a593163a68e2be0daf0e1fcb9e389bb8088daf569ec1c41632b521303b",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1830.jpg",
+      "image_sha256": "dd233461a99b09c91654fb1ba902f957136eed0f1442a93fd64a32afe3c294e5",
+      "label_sha256": "d98f6e599e13bf5444ed14ca049dd89ed13ea40e8b3cd4a4a80064b7f5eff219"
+    },
+    {
+      "image": "beach_bird_1831.jpg",
+      "image_sha256": "f589bd08bfc98e0131ea71119c383b1bbabe007f99704acfc471aaf5dbdc3aa9",
+      "label_sha256": "099c59caf43c0a55a14cb02285a7dfb0ebcff61e1ea97807e50234a2b9be38e1"
+    },
+    {
+      "image": "beach_bird_1832.jpg",
+      "image_sha256": "5d30504355c97aaf270e43290c0a28f21c28938c58db11edf784f1456583f4cc",
+      "label_sha256": "b1e3f15e48318fc0b44d2176d1a2b872dfff76a76476b65b38894234fc8d88b9"
+    },
+    {
+      "image": "beach_bird_1833.jpg",
+      "image_sha256": "5803903b4cda8d05fc8030953846165df020dfdc806693e99c686d51dbc7a77a",
+      "label_sha256": "25a4049ccedca1dc9a49f04d98f17460d6ff78ed22653ada71f543a4c97da410"
+    },
+    {
+      "image": "beach_bird_1834.jpg",
+      "image_sha256": "d4044fc0fbc4cf74d870b0c5f76358c0369bdb5fa696297dcdba42b852702e8b",
+      "label_sha256": "a0cad95964f652aeae2417fea940343f79af269abd392470d6ba7ff9658a315d"
+    },
+    {
+      "image": "beach_bird_1835.jpg",
+      "image_sha256": "5018bfec75c16adaeb60ca39a7d6bf346dc85febf92ec5de230879a3071bd2e9",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1836.jpg",
+      "image_sha256": "b218c36905fac2f9efd49eaeab390e68fc277e144b7563b1f325614c5f3fa060",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1837.jpg",
+      "image_sha256": "15135ebc3f0467533a25188f61c58f2baa161885df166fb6437bc57abb692b0f",
+      "label_sha256": "6bc04d19a710999762eec67266909f7aaf4a952218f5bb7e3f591a978b13eb49"
+    },
+    {
+      "image": "beach_bird_1838.jpg",
+      "image_sha256": "afe8315d2afebf07752a439a09c69c1ce59777b2bc0a257b7cde7450a66fffc7",
+      "label_sha256": "5d6c0944a63e87ef98992c4fc93544e15bd25432c7d6dff40e6e7a9aa2d4b286"
+    },
+    {
+      "image": "beach_bird_1839.jpg",
+      "image_sha256": "d2bfe82ce0153360b9fafbf10ef9bb154f1334f4d9693b943c7f200a319258ed",
+      "label_sha256": "1c6857f4a4bb3c88c79ef68e14f18cca1685077255cf97ef2f28dda8912b3c6f"
+    },
+    {
+      "image": "beach_bird_1840.jpg",
+      "image_sha256": "8c1b5310cb0b79a6dc8c40942bbe70c6d967f29fb48a74e380a884864f692e81",
+      "label_sha256": "d7b882723a7bffc86e189db11ff616b9b883c318b3ff13a9c1c7d1af9a517d3a"
+    },
+    {
+      "image": "beach_bird_1841.jpg",
+      "image_sha256": "e2d6788588321b36aa004b32bba99ffd96372b12309a34578a709b8afbfecfae",
+      "label_sha256": "c7caf000534f6a21246ef11daddf71dea0a90a5e7619345aafff7beba15c27ca"
+    },
+    {
+      "image": "beach_bird_1842.jpg",
+      "image_sha256": "3dd6bd520f32392de62bcf153fd6ca4fc4fb31951673e75ace23308baff03110",
+      "label_sha256": "fcc44a34a2fc0aa8a51eda669940014ea9d340dbcfe3afe6a4daea0693731dba"
+    },
+    {
+      "image": "beach_bird_1843.jpg",
+      "image_sha256": "6465106650f82cfa3faecc46506772b07f079d2fdcbb54a4868f7c20e02381ae",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1844.jpg",
+      "image_sha256": "5e024ea6ba79c8fb43680d7141dccc43448dc83ac3f599f23afa9e224bef8535",
+      "label_sha256": "6d04ae0736a9d968584475ca8720b3f30cd3dbff13ab591c98197f071fea073d"
+    },
+    {
+      "image": "beach_bird_1845.jpg",
+      "image_sha256": "1f7bccf1bfc150b64fa306557e60b4957a3d5fd9a2ca9375c98a7599fac230db",
+      "label_sha256": "d08731b4f6ea77d0d900cf049139922784bfbf1a6de04dbf321e72b175db00e0"
+    },
+    {
+      "image": "beach_bird_1846.jpg",
+      "image_sha256": "0f8fb2bf388dac914e5a8fac230c9efa7b3ce01d89724dbe7b35a24899261633",
+      "label_sha256": "7ea245462d14349819110ddd19d3ab178ceae85f48c5db5876754f2cd812c630"
+    },
+    {
+      "image": "beach_bird_1847.jpg",
+      "image_sha256": "5ceb5307e0c745faa587665fa7f42dfb8554dd92bab88e84c03e3e53b78883ac",
+      "label_sha256": "6cddd0b2d713b0006901e0fde2467a7492147104572332b19b61c8101b79df77"
+    },
+    {
+      "image": "beach_bird_1848.jpg",
+      "image_sha256": "e36da09064523bb3b6ecd8cab3ba847dd53434307266dc4ac3f1bc78458bd9f5",
+      "label_sha256": "0ec0b865db58bbafcc78b2d1f5274499c605271a4bf2054bebce2743a685dde3"
+    },
+    {
+      "image": "beach_bird_1849.jpg",
+      "image_sha256": "ad615c0f5e7f94254dc72038c65838448de0e3e473afb20ad160aa2c928507b7",
+      "label_sha256": "99a83a976b34442cf9732c303630011ec1c86e9727610ed1b1d0f5a57aa6773a"
+    },
+    {
+      "image": "beach_bird_1850.jpg",
+      "image_sha256": "f95d7a24ba5cfd196503540574cef9c25e2b4cca38584cbbd00f04b7d3142f8e",
+      "label_sha256": "978e16db8e630e63899fee42b1f714dcbcedf4e268c8353e2c4673510afe2562"
+    },
+    {
+      "image": "beach_bird_1851.jpg",
+      "image_sha256": "3d4d3acb90b422747cb4425862a3dea554294e0ea5a81dd083baa21d8034c171",
+      "label_sha256": "2fac031a4d54b9bd490f0d0712f5e7a8d146563ca12e30c0efecc29f369e762c"
+    },
+    {
+      "image": "beach_bird_1852.jpg",
+      "image_sha256": "e8bbd92788d43be55db6c9135d8616ad7756aec547e1414fc283b0deae3b6b88",
+      "label_sha256": "10a72c79526ebd93007165618710627192d2b0363f14ea26d82bedb09363192b"
+    },
+    {
+      "image": "beach_bird_1853.jpg",
+      "image_sha256": "221cea9752fe8b182c2bc0d22f45a5aa59c5be3bdfaa0523c683c47c527df383",
+      "label_sha256": "969df69195547fd591dab9a22b24871b03199f4a5272215dc2b6630313931dc4"
+    },
+    {
+      "image": "beach_bird_1854.jpg",
+      "image_sha256": "3ff8f43f03b4ce69e97a6da5b3704858741343933820695ddccc12df39087aaa",
+      "label_sha256": "bf50922da769ba0aac9db69d6e611e190db498007c9a71b247bd4742a6b564bd"
+    },
+    {
+      "image": "beach_bird_1855.jpg",
+      "image_sha256": "8f16ed66e7c8922593d0c4e61ab51b89764d321c136e49aec0cc710c2308d155",
+      "label_sha256": "e9d97979a64952e217e81665f2bc69c5833e33074b0da6582a5f86606ea0440b"
+    },
+    {
+      "image": "beach_bird_1856.jpg",
+      "image_sha256": "8022388194b55e314271ec9b596ed84376d55b9586aa6033fcb1ec2151c5ca6c",
+      "label_sha256": "3d4b9dcbd1bfb86bdbeeb2347fc5b858bd768fada9ede59c73dba0a7cdbed4f0"
+    },
+    {
+      "image": "beach_bird_1857.jpg",
+      "image_sha256": "12c2659d610c597694e18307f9553cf14062b3f252dd9df3f2d2e8f1feba7fbf",
+      "label_sha256": "bbc876d756948acf2933b46dce473fd3c2b1717d0a1d796b3e614c28f0378213"
+    },
+    {
+      "image": "beach_bird_1858.jpg",
+      "image_sha256": "d19511d8f69649199adf7192a4ff012d698d8722f98c97690b1aa57a556d6cbd",
+      "label_sha256": "084cfcd39997ed0bc2bde8d4fa347cbb4539bc3f693ae5ee02120244f758a100"
+    },
+    {
+      "image": "beach_bird_1859.jpg",
+      "image_sha256": "814bcddcd1532d502cf15f94f961518b4974c5ca3155819fa7669c7407e9795a",
+      "label_sha256": "09dce05d34c8831d0457f2ce82bc73b7e7b87585dfa47177cf1595e893adbc3f"
+    },
+    {
+      "image": "beach_bird_1860.jpg",
+      "image_sha256": "89be9f0b949925723c1575cc562aed75e040308ba4826f54cd2499c681f5baa4",
+      "label_sha256": "1eef0ccb6a197458a0fd77b1d332aed220b36ce27fb0d0ab5965854404f795b5"
+    },
+    {
+      "image": "beach_bird_1861.jpg",
+      "image_sha256": "559f78c8480723f2c152e4c32b2a44b79edabe4f5c3acb10886c8772918dd28d",
+      "label_sha256": "0be46166c9f2d2f5e792d53fe729fc5bb8251359b84acfe7aa9a4e927a60e853"
+    },
+    {
+      "image": "beach_bird_1862.jpg",
+      "image_sha256": "b14e5936c690ec5e9d247ce7b5648725fcfd025bb595e584aebe9c17b5cfa5e0",
+      "label_sha256": "0cea2dd559d971e497d2a452d2d22c3e9b6984cd7512575e4191f70fb1088f8c"
+    },
+    {
+      "image": "beach_bird_1863.jpg",
+      "image_sha256": "bd5b1598a17bd066e4f463724841078dac26e3d47efc9aacc583c215d36a8e32",
+      "label_sha256": "53449a35f0514f651eb119756adb612a947bd410198ec205dc4a3d1e3152b3aa"
+    },
+    {
+      "image": "beach_bird_1864.jpg",
+      "image_sha256": "65a443d4481db7faa54e85c2bc0044f4a632b0233afaa7d46f31345dba4d8bf8",
+      "label_sha256": "ae231fae30c12c1c2a55f0dce47e17e86175260a137efcd46fc009d457274b28"
+    },
+    {
+      "image": "beach_bird_1865.jpg",
+      "image_sha256": "552b562f2d0ff0de232333a3b02be8646fbf2ba46eee1f9fb553d5b00922b53f",
+      "label_sha256": "2ed349f54d1777385ef507c537beff6b17665c406bc1c56acb13a86f1a0a856b"
+    },
+    {
+      "image": "beach_bird_1866.jpg",
+      "image_sha256": "dd689fbb1bd1e80816ba06c48aebfeeb3294618c4a6ba1d7155e41799ce902ec",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1867.jpg",
+      "image_sha256": "67c5bf9d602e0dbb56d27ec872f7c44af75bfaf384746b63fde239f6a7f59b62",
+      "label_sha256": "b69ad0fc88f9f39c3deea3aeb466972b76b75c59731296c0914a36a0060e6e55"
+    },
+    {
+      "image": "beach_bird_1868.jpg",
+      "image_sha256": "ff6a263293b0b82b2f7fb16c244b10a91bf38fa3f25e615959c1f01dca91d1b4",
+      "label_sha256": "dc583c78e68d74ebd771ff46081fc2c0c3b59d3e3a16f7c46adde0d5bc3df7f8"
+    },
+    {
+      "image": "beach_bird_1869.jpg",
+      "image_sha256": "bac7ed02d4f86b110c7bd9200b839280b015a4787c8b11f35bbed3ad580efed4",
+      "label_sha256": "4a8945c5df821b6529248bf3d876208fbcbc609a36bb8f84da03abb353ca4477"
+    },
+    {
+      "image": "beach_bird_1870.jpg",
+      "image_sha256": "e6bcb789d3e8d27d3caa144a797e704109eeb56559bd5439afb31eed9effee84",
+      "label_sha256": "9fda4309480f06449a0a92318c9bea83a6556a444b76a8b45742912a6936f4ad"
+    },
+    {
+      "image": "beach_bird_1871.jpg",
+      "image_sha256": "43d794244848962935bbf5768e69abd9c5798fc18fc8cba18a3afc85b8429644",
+      "label_sha256": "ddf531228f7c45f13ea212f0d81cc134c786e238201a089886529e42d40baed5"
+    },
+    {
+      "image": "beach_bird_1872.jpg",
+      "image_sha256": "259d046ad6ba7c4e96c7fad2ba5cfd3f0419da0d41de9f22519d3e2504ddcca6",
+      "label_sha256": "02b8d2db24704eecf002ba93b292b939dc31e86c8e9b28e5c8d7a750eac76e52"
+    },
+    {
+      "image": "beach_bird_1873.jpg",
+      "image_sha256": "bd8627a9f6c1e6add3f35ef3f5c3d3cb2c25caa7f082b7e47f3842e325e29caf",
+      "label_sha256": "0b4366d9cffe9ece585e30c2ea6841e508fbac59c5aef4dbb2bffbc0144633e3"
+    },
+    {
+      "image": "beach_bird_1874.jpg",
+      "image_sha256": "3203427f8985f973a0be16a4bee8355be2d8ef98990ec75378cf81ebc732b59d",
+      "label_sha256": "2edd1e5fff96083c4431173a1b92ce545228277e0359c463975e70fdeb919257"
+    },
+    {
+      "image": "beach_bird_1875.jpg",
+      "image_sha256": "dda1dadd54d0673ca51e2b0a43230366704d3317078adc07e8298e7255ed54ea",
+      "label_sha256": "5cb4a9384658c892d41ced973c4e34754d42d28037b340524cf9849344cd96e1"
+    },
+    {
+      "image": "beach_bird_1876.jpg",
+      "image_sha256": "f27d9bac9f490929d11ccc534e8e15aa857ad73ab5672248a059d78c6cae7745",
+      "label_sha256": "8bab5bf56916782415231a2d00ac949c1210987d8ce6811024bfaba5c69f9ff8"
+    },
+    {
+      "image": "beach_bird_1877.jpg",
+      "image_sha256": "e5d423c1e9b55670aebb3a48bc80f7a7ea880c7f92c7fbae76c5c67eb77c237f",
+      "label_sha256": "37308b5b6ae88d18ef6534f4cd670f23e87fdb3753df6bea52d2a9af2e38c475"
+    },
+    {
+      "image": "beach_bird_1878.jpg",
+      "image_sha256": "d450a56d45d17e9b5ad8968023fc2336cc7b1a879ce978c053660a2158dacf3e",
+      "label_sha256": "5dff655167de7dc3be3de34a086664becd5deff38dd04b64f89b74fd49a31750"
+    },
+    {
+      "image": "beach_bird_1879.jpg",
+      "image_sha256": "b22862b8bfc2c5a8c8174a6289f01227fdf895a2c8f9b711b613a5531eff15fb",
+      "label_sha256": "0ed4b3ea0139d838886ebe097787d284174eb8bc135cd3499defdf6484c2d293"
+    },
+    {
+      "image": "beach_bird_1880.jpg",
+      "image_sha256": "36496e08519670aa09f8f56bba427724590a43a65ea151a89ac4276f0dcd00be",
+      "label_sha256": "73d3b8b21f32b5c8e33fbf6f7c7be19a4a8fd54b8cdf4d9f505adb056a22c6e5"
+    },
+    {
+      "image": "beach_bird_1881.jpg",
+      "image_sha256": "6c41865d6f37a1e991739d052a93446efc2dc244d86dd31696df0b2b2bf7b716",
+      "label_sha256": "10471812b2b072a2af0171aa58f8a91d1bde2e5fe98fbe49a174d3001ab28558"
+    },
+    {
+      "image": "beach_bird_1882.jpg",
+      "image_sha256": "6ed92e2735dbc14f1c9a9273440f88c086a0e2697bc6733b30e3a96a2675cd91",
+      "label_sha256": "8140a3eefe951a169cc17fb3a579822e7e9852660ee89d4870301f588d3acca5"
+    },
+    {
+      "image": "beach_bird_1883.jpg",
+      "image_sha256": "3580f82326a90311a7d7d6e80a60fec79cba7bd45d9f1baebc1b8dcf1dd9ccea",
+      "label_sha256": "f0391808373d7a1fcc0e27b836ab6a554ae69fbd36518fabea3d924222821cf9"
+    },
+    {
+      "image": "beach_bird_1884.jpg",
+      "image_sha256": "d1667e0b57531d4f1cc2b47275d1b93e8deae382bac268dcf7dcf8394643e038",
+      "label_sha256": "cdc61c110e0fca486d7ed100b44461d424f2a1b271fc9f8dba00440f31707946"
+    },
+    {
+      "image": "beach_bird_1885.jpg",
+      "image_sha256": "5c4eebe1e373f436938959f7b1018cd2a0ad7c92ad1dec8cca1ba660033cebde",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1886.jpg",
+      "image_sha256": "c2d1ca174cf33e015b6e2865b2c9ddb334fd8dbfb338858553460451c5f8c1b8",
+      "label_sha256": "070303ec227a893f498cb70218106bb7885863f522a88e84168b615836c1d629"
+    },
+    {
+      "image": "beach_bird_1887.jpg",
+      "image_sha256": "d9469588322f1327e23f525d70cefb80c55cd035b835cdece73ca2a69797e86b",
+      "label_sha256": "156291ed476056d6e9d5cbb6daeda6004dcbdf99027e7dc55e8f3127c0c33f16"
+    },
+    {
+      "image": "beach_bird_1888.jpg",
+      "image_sha256": "40d52826b6b05476b7900edb2a6cc7428dc672ecfc6a916e1924549e8524517c",
+      "label_sha256": "8ed831c7d1989657c6c5a6e747babb8f078a174617376263444ef71eb6620882"
+    },
+    {
+      "image": "beach_bird_1889.jpg",
+      "image_sha256": "170913eb7b6bd622673661d664ed78f6f5b6ba211947f75fe745b87e273433dd",
+      "label_sha256": "5c8bef968eb74d1cfddb269655b3867c1b134d6fe40eadbe9a5836530f360d2d"
+    },
+    {
+      "image": "beach_bird_1890.jpg",
+      "image_sha256": "d14176ceceb1a10520a5b6db4ae229eef7eb671407d13d2bea028715cc8551d0",
+      "label_sha256": "6e1c4108d09b29209217b49a5c627662d32b5a52d471163802829f04d5a8ad85"
+    },
+    {
+      "image": "beach_bird_1891.jpg",
+      "image_sha256": "5e61d2e0f175df89ca8523a76d31c4c54bbf6f4a79647e7efcb2a5bacc313d0d",
+      "label_sha256": "70906dbfbc572477de396adbb7c43b4331b61a22063d7f7c0b2b067cb515efba"
+    },
+    {
+      "image": "beach_bird_1892.jpg",
+      "image_sha256": "cba19b0dcd844e33fb76afee99f65b11ef04ad4fcdcb7e9e851e4b8718d5b2df",
+      "label_sha256": "da221057c6c96b5f899fbc3976f63ab7f1a543af24f506a6f40df209bd21f4a3"
+    },
+    {
+      "image": "beach_bird_1893.jpg",
+      "image_sha256": "347bbda62ccfceaf441f751e1e7a1f72f1d3507565a516543a79029e909b0fc6",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "image": "beach_bird_1894.jpg",
+      "image_sha256": "fea4e81ad28a73c56b8db28cb0acccfb2383cb36a346c24387ec2fc2bd6adf28",
+      "label_sha256": "135fde53b860ce17ec301274b2270261853358740d3afe6432354f467fa95a73"
+    },
+    {
+      "image": "beach_bird_1895.jpg",
+      "image_sha256": "dd44c524265b875e31bc4daae319f1595d54d50e05c8da034f40668c8307ed48",
+      "label_sha256": "cf7275fdaf99497328aacb338a0d3304abfa05f1e2f77d52bc4f0e3e15b5c74a"
+    },
+    {
+      "image": "beach_bird_1896.jpg",
+      "image_sha256": "466b33e07172fbb5dbcb37af7c2f4f378a6ecb4a947c8d7474f98334c2bc88b6",
+      "label_sha256": "3452998adf1172c04c3bf4c33df17606cbec54364faa5b61a688f905751b6fa7"
+    },
+    {
+      "image": "beach_bird_1897.jpg",
+      "image_sha256": "731a185784671b4becca5ab5e712637f66ad38fd595f9c4877ba3c99a3c2eeb9",
+      "label_sha256": "458864830fe66f6d4433dd49e92f202dc31dc7b9b08b907ec8c6ab7bc139ca73"
+    },
+    {
+      "image": "beach_bird_1898.jpg",
+      "image_sha256": "450788be2a42f1dc760775b4544c544f994c53bdf86c30b99dfecbad9f830b58",
+      "label_sha256": "d6481b79c00328b9a556a98857700f533b668784daf820b21442fd75f7bc731b"
+    },
+    {
+      "image": "beach_bird_1899.jpg",
+      "image_sha256": "d0a5fc880efdd7564aa98dc8374ec75566917cb40f459a96ccff009fb69ffd57",
+      "label_sha256": "6668d8e47e263a991b49ed823a1c8b167965c1d9bbd1b8b1537f57986d99d3e8"
+    },
+    {
+      "image": "beach_bird_1900.jpg",
+      "image_sha256": "e5f5314be3241c8bf40e9fd9d020f74dd4c54acc95f265635dcc8101fd04c4d4",
+      "label_sha256": "0f532a54a97e24857289aa3f76fe656b18d27a4af02cfb8ceb6e42ba2f069e6d"
+    }
+  ],
+  "selection_rule": "Evaluate all four fixed variants; do not tune using test results."
+}

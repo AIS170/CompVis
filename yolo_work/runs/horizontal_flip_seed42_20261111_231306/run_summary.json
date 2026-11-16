@@ -1,0 +1,14 @@
+{
+  "experiment": "horizontal_flip",
+  "model": "yolo11n",
+  "initial_weights": "yolo11n.pt",
+  "trainer": "HorizontalFlipTrainer",
+  "horizontal_flip_probability": 0.5,
+  "epochs_requested": 10,
+  "seed": 42,
+  "ultralytics_version": "8.4.208",
+  "wall_time_seconds": 49782.811772400004,
+  "wall_time_minutes": 829.7135295400001,
+  "best_weights": "C:\\Users\\raksh\\Desktop\\CompVis\\yolo_work\\runs\\horizontal_flip_seed42_20261111_231306\\weights\\best.pt",
+  "note": "Wall time includes setup and validation, and any pauses."
+}

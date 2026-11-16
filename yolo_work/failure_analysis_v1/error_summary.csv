@@ -1,0 +1,5 @@
+model,condition,ground_truth_birds,true_positives,false_positives,false_negatives,precision_at_025,recall_at_025
+after_blur_training,blur_strong,1518,1064,276,454,0.7940298507462686,0.7009222661396575
+after_blur_training,clean,1518,1220,384,298,0.7605985037406484,0.8036890645586298
+before_blur_training,blur_strong,1518,949,223,569,0.8097269624573379,0.6251646903820817
+before_blur_training,clean,1518,1227,358,291,0.7741324921135647,0.808300395256917
