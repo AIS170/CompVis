@@ -1,122 +1,122 @@
-# Faster R-CNN：Beach Bird 独立实验
+# Faster R-CNN: Beach Bird Experiments
 
-本次 A–E 实验已完成，按冻结记录，最终方案为 **D**。可直接使用 [精选结果和字段说明](results/README.md) 作组内比较，无需重新训练或运行 test。原始大型运行产物留在本机 `outputs/`，不提交 Git。两张图的 smoke 仅作流程检查，不能作为正式结果。旧 CompVis 指标不属于本实验。
+Experiments A-E are complete. The frozen final model is **D**. Use the [selected results and column definitions](results/README.md) for group comparisons without retraining or rerunning test evaluation. Large original artifacts remain in the local ignored `outputs/` directory. The two-image smoke run is a pipeline check, not a reportable experiment. Results from the older CompVis implementation are not part of this experiment.
 
-## 环境与审计
+## Environment and data audit
 
-记录结果的环境为 Python3.12.4、PyTorch2.6.0+cu124、TorchVision0.21.0+cu124、GPU RTX4070 Laptop 8GB、CPU i9-13980HX，计时4 threads。这是原实验环境记录，不代表队友的硬件或全新安装环境已经验证。新克隆的独立安装见下文；无需兄弟目录或个人环境。已读取课程PDF；按本次用户明确提出的协议实施。
+The recorded environment was Python 3.12.4, PyTorch 2.6.0+cu124, TorchVision 0.21.0+cu124, an RTX 4070 Laptop GPU with 8 GB of memory, and an Intel Core i9-13980HX CPU. CPU timing used four threads. These are historical experiment details, not claims about a teammate's hardware or a fresh installation. Standalone setup instructions are below; no sibling repository or personal environment is required. The course specification was reviewed, and the experiment follows the protocol requested for this project.
 
-通过 `kagglehub.dataset_download('liugalhigh/beach-bird/versions/3')` 定位并检查本地缓存结构。实际路径见 outputs/audit.json。images/{train,val,test} 对应 labels/{train,val,test}；YOLO class0 normalized xc/yc/w/h 转原图绝对像素 xyxy，bird=1、background=0，不重新划分。
+The dataset is located through `kagglehub.dataset_download('liugalhigh/beach-bird/versions/3')`, followed by inspection of its actual directory structure. The local path is recorded in the uncommitted `outputs/audit.json`. Images in `images/{train,val,test}` correspond to annotations in `labels/{train,val,test}`. YOLO class-0 normalized `xc yc w h` annotations are converted to absolute original-image `xyxy` coordinates, with bird=1 and background=0. The original splits are preserved.
 
-| split | 图片 | 框 | 负样本 | 类别数 |
+| Split | Images | Boxes | Negative images | Classes |
 |---|---:|---:|---:|---:|
 | train | 1369 | 8663 | 154 | 1 |
 | val | 291 | 1843 | 33 | 1 |
 | test | 240 | 1518 | 27 | 1 |
 
-逐图解码并检查缺失、非有限/无效/越界框、空标注、重复stem及孤立label；无异常。负样本保留为空(0,4) boxes。异常直接报错，不静默丢弃；仅对归一化坐标1e-6浮点容差裁剪。RGB转换仅在内存，原数据不写入。训练保存train/val图像和标注SHA256 manifest。初始test仅作结构与文件身份审计，无预测或调参。
+Every image was decoded and checked for missing annotations, non-finite or invalid boxes, out-of-bounds coordinates, empty annotations, duplicate stems, and orphan labels. No issues were found. Negative images retain empty `(0,4)` boxes. Invalid input raises an error rather than being silently discarded; clipping is allowed only within a normalized-coordinate floating-point tolerance of 1e-6. RGB conversion occurs in memory without modifying source data. Training records SHA256 manifests for train/validation images and annotations. Initial test access was limited to structural and file-identity auditing, without predictions or tuning.
 
-results/teammate_alignment.json 已核对队友test protocol全部240张原图和标注SHA256；validation五条件共1455张图片逐像素一致，1455份标注字节一致。
+`results/teammate_alignment.json` records matching SHA256 values for all 240 original test images and annotations in the teammate's protocol. All 1455 derived validation images across five conditions matched pixel-for-pixel, and their 1455 annotation copies matched byte-for-byte.
 
-## 模型与配置
+## Model and training configuration
 
-固定TorchVision COCO_V1预训练ResNet50-FPN Faster R-CNN，两类新分类头，backbone后三阶段可训练；使用已有完整权重的FPN V1，不混用V2。每次独立实验重设seed42，从相同COCO权重及相同随机分类头初始化，不跨增强实验续训。
+The model is TorchVision Faster R-CNN ResNet50-FPN with COCO_V1 pretrained weights, a new two-class prediction head, and the last three backbone stages trainable. This experiment consistently uses FPN V1 with the existing complete pretrained weights, not a mixture of V1 and V2. Each independent experiment resets seed 42 and starts from the same COCO weights and identically initialized random prediction head. Experiments do not continue from another augmentation experiment's checkpoint.
 
-原分辨率RGB float32[0,1]，内部COCO mean/std normalization；短边800、长边上限1333、保持比例，batch内stride32 padding。输出自动恢复到原图xyxy，再直接送evaluator，不再letterbox。预测导出记录实际 input_hw/resized_hw/padded_batch_shape。已实测300x600 -> 666x1333，padding672x1344。
+Original-resolution RGB float32 tensors in [0,1] undergo internal COCO mean/std normalization, aspect-preserving resizing with short edge 800 and long edge capped at 1333, and stride-32 batch padding. Predictions are mapped back to original-image `xyxy` coordinates before evaluation, without another letterbox operation. Exports record actual `input_hw`, `resized_hw`, and `padded_batch_shape`. A 300x600 input was verified to resize to 666x1333 and pad to 672x1344.
 
-五层FPN的anchor sizes分别16/32/64/128/256；每层height/width ratios=.5/1/2。原候选8/16/32/64/128的宽泛sqrt(area)4至181范围包含86.38% train框；train缩放框sqrt(area)中位67.80、P5=20.16、P95=280.52、最大771.61，因此正式A-D前仅依据train统计上移一档以照顾大框。上述统计使用800/1333的解析缩放近似；整数取整后的实际尺寸随预测导出。极端小/大/细长框仍可能覆盖不足，anchor不是可检测尺寸硬边界。未使用test或validation预测作此选择。
+The five FPN levels use anchor sizes 16/32/64/128/256, respectively, with height/width ratios .5/1/2 at each level. The original candidate sizes 8/16/32/64/128 broadly cover sqrt(area) values from 4 to 181, containing 86.38% of scaled train boxes. Train sqrt(area) statistics were median=67.80, P5=20.16, P95=280.52, and maximum=771.61. The sizes were therefore shifted up one level before formal A-D experiments, using train statistics only, to accommodate larger boxes. These statistics use an analytical 800/1333 scaling approximation; prediction exports record actual integer-rounded sizes. Extreme small, large, and elongated boxes may still have limited anchor coverage. Anchor sizes are not hard detection-size limits. Neither test nor validation predictions informed this choice.
 
-统一SGD lr=.005、momentum=.9、weight_decay=.0005，15 epochs；MultiStepLR完成epoch10及13后乘.1：epochs1-10=.005，11-13=.0005，14-15=.00005。batch2、AMP关闭、梯度累积1、workers0。GPU smoke通过；正式异常停止记录，不私自更改单个实验参数。
+All A-D experiments use SGD with lr=.005, momentum=.9, weight_decay=.0005, and 15 epochs. MultiStepLR multiplies the learning rate by .1 after epochs 10 and 13: epochs 1-10 use .005, 11-13 use .0005, and 14-15 use .00005. Batch size=2, AMP is disabled, gradient accumulation=1, and workers=0. The GPU smoke check passed. Formal runtime errors stop execution and are recorded rather than silently changing an individual experiment's configuration.
 
-Python/NumPy/Torch/CUDA seed42，DataLoader独立generator seed42，workers0无需worker seeds；cuDNN benchmark=False、deterministic=True，跨硬件/版本不保证逐位一致。每epoch验证，按clean validation mAP50-95最大值选checkpoint，平分保留最早epoch。保存best/last、optimizer/scheduler、分项损失、lr和训练耗时。A-D除增强外配置相同。
+Python, NumPy, Torch, and CUDA use seed 42. The DataLoader has an independent generator seeded with 42; workers=0 requires no worker seeds. cuDNN benchmark=False and deterministic=True. Bitwise reproducibility across hardware or software versions is not guaranteed. Every epoch is evaluated on validation data. The checkpoint with maximum clean validation mAP50-95 is selected, retaining the earliest epoch on ties. Best/last checkpoints, optimizer/scheduler states, component losses, learning rates, and training times are recorded. A-D differ only in augmentation.
 
-## A-D增强
+## A-D training augmentation
 
-原分辨率顺序：flip -> photometric -> blur -> tensor -> 模型内部预处理。
+Operations run at original resolution in this order: flip -> photometric transform -> blur -> tensor conversion -> internal model preprocessing.
 
-- A无随机增强。
-- B p=.5水平翻转，框同步 xmin'=W-xmax，xmax'=W-xmin。
-- C在B上增加p=.5共享触发，独立uniform alpha[.8,1.2]与beta[-25.5,25.5]；像素 round(clip(alpha*RGB_uint8+beta,0,255)).astype(uint8)。
-- D在C上增加p=.3 PIL GaussianBlur，radius uniform[.5,2]。
+- A: no random augmentation.
+- B: horizontal flip with p=.5, updating boxes as xmin'=W-xmax and xmax'=W-xmin.
+- C: B plus a shared p=.5 photometric trigger, with independent uniform alpha[.8,1.2] and beta[-25.5,25.5]. Pixels use `round(clip(alpha*RGB_uint8+beta,0,255)).astype(uint8)`.
+- D: C plus PIL GaussianBlur with p=.3 and radius sampled uniformly from [.5,2].
 
-Val/test没有随机训练增强。
+Validation and test data receive no random training augmentation.
 
-## Evaluator及组内对齐
+## Evaluator and group alignment
 
-直接从官方Ultralytics8.4.208 wheel提取并复用box_iou/compute_ap/ap_per_class/match_predictions等原函数，匹配队友记录版本，不把COCO AP冒充YOLO AP。不执行wheel包初始化，不安装第二套Ultralytics。wheel不提交仓库，通过 `python -m faster_rcnn.fetch_evaluator` 从固定 PyPI 文件地址获取，每次加载前校验 SHA256。来源、版本和hash见 `evaluator.lock.json`，第三方声明见 `THIRD_PARTY.md`；已记录函数hash见 `results/verification.json`。获取流程不改变原函数/AP/matching逻辑。
+The original `box_iou`, `compute_ap`, `ap_per_class`, `match_predictions`, and supporting functions are extracted directly from the official Ultralytics 8.4.208 wheel, matching the teammate's recorded version. COCO AP is not substituted for YOLO AP. The wheel's package initialization is not executed, and a second Ultralytics installation is unnecessary. The wheel is not committed: `python -m faster_rcnn.fetch_evaluator` downloads it from a pinned PyPI file URL, and its SHA256 is checked before every load. See `evaluator.lock.json` for the source, version, and hash; `THIRD_PARTY.md` for attribution; and `results/verification.json` for recorded function hashes. Acquisition does not alter the original AP or matching logic.
 
-单类YOLO0对应FR-CNN1。IoU=.50:.05:.95、原版101点插值积分、use_scipy=False匹配去重。ROI内部保留score>.001，直接导出返回框，满足cutoff .001；每图最多300。P/R先过滤confidence>=.25再调用同一matcher、IoU>=.50，跨图micro TP/FP/FN，不用最大F1自动阈值。
+YOLO bird class 0 maps to Faster R-CNN bird class 1. AP uses IoU=.50:.05:.95, the upstream 101-point interpolation/integration, and `use_scipy=False` matching and deduplication. The ROI head retains scores >.001, and returned predictions are exported directly, satisfying the .001 confidence cutoff. Each image has at most 300 final detections. Precision/recall first filter confidence>=.25, then recompute matching with the same upstream matcher at IoU>=.50 and aggregate global micro TP/FP/FN. An automatically selected maximum-F1 threshold is not used.
 
-ROI NMS=.7、RPN NMS=.7，与AP匹配IoU独立；RPN pre-NMS train/test=2000/1000、post-NMS=2000/1000，均大于300，但score/NMS仍可能使输出少于300，不补框。
+ROI NMS=.7 and RPN NMS=.7 are separate from AP matching thresholds. RPN pre-NMS train/test limits are 2000/1000, and post-NMS limits are 2000/1000, both above 300. Score filtering and NMS may still yield fewer than 300 predictions; outputs are not padded with boxes.
 
-已完成本地同库函数、数据身份及validation腐蚀一致性检查；尚未与队友本人共同复核。最终比较前确认共同重评、P/R重匹配、图片身份和计时边界，不能声称已严格完成跨模型对齐。
+Local checks cover identical upstream functions, dataset identity, and validation corruption consistency. Joint review with the teammate is still pending. Confirm common re-evaluation, fixed-threshold P/R matching, image identity, and timing boundaries before claiming fully verified cross-model alignment.
 
-## 鲁棒性、失败分析与改进E
+## Robustness, failure analysis, and improvement E
 
-固定Clean、dark_mild像素乘.7、dark_strong乘.4、PIL GaussianBlur radius1/2。原分辨率腐蚀后进入模型，annotations不变；暗光clip(float32 RGB*factor,0,255).astype(uint8)截断，不四舍五入、不重压JPEG。全部validation腐蚀已与队友逐像素核对。
+The five conditions are clean, dark_mild (pixels multiplied by .7), dark_strong (multiplied by .4), and PIL GaussianBlur with radius 1 or 2. Corruptions precede model resizing, and annotations remain unchanged. Darkness uses `clip(float32 RGB*factor,0,255).astype(uint8)`, with truncation rather than rounding and no JPEG recompression. All derived validation images were checked against the teammate's images pixel-for-pixel.
 
-A-D验证完成后按FN、FP、鸟群数量、小框数量选择代表图。GT绿色命中/橙色漏检；预测青色命中/红色误检，显示分数。绘图使用score-greedy诊断匹配，报告指标仍用upstream matcher。遮挡/NMS、低对比度、模糊边缘只是待看图核实的原因假设。
+After A-D validation, representative cases are selected by FN, FP, bird count, and small-box count. Ground truth is green when matched and orange when missed; predictions are cyan when matched and red for false positives, with scores displayed. Visualization uses diagnostic score-greedy matching, while reported metrics use the upstream matcher. Occlusion/NMS, low contrast, and blurred edges are hypotheses to verify visually rather than established causes.
 
-E设计规则在test前固定：以五条件validation mean AP50-95从A-D选基础方案；比较strong dark/blur AP，针对较弱条件仅改一项。本次记录选择 D 为基础，弱项为 blur，E 唯一变化是 blur_probability .3→.6。E重新COCO初始化，其余参数和预算不变。`results/improvement_plan.json`记录依据；保留E与基础方案验证结果，不默认E有效。最终冻结方案仍为 D。
+The E design rule was fixed before test evaluation: select the A-D base model with the highest five-condition validation mean AP50-95, compare strong-darkness and strong-blur AP, and change only one training parameter targeting the weaker condition. The recorded base was D, the weaker condition was blur, and E's sole change was blur_probability .3 -> .6. E restarted from COCO weights with the same remaining settings and training budget. `results/improvement_plan.json` records the rationale. Both E and its base model's validation results are retained, without assuming E improves performance. The final frozen selection remained D.
 
-A-E验证完成后，以五条件validation mean AP50-95确定最终方案，平分按字母顺序；freeze.json固定方案和所有checkpoint SHA256。然后每模型/条件只评估一次test，输出目录要求全新，拒绝重复覆盖；中断保留痕迹停止。不能根据test反选或重训；最终方案来自freeze，不来自test表。
+After A-E validation, the final model is selected by five-condition validation mean AP50-95, breaking ties alphabetically. `freeze.json` records that choice and all checkpoint SHA256 values. Each final model/condition then receives one test evaluation. Output directories must be new; overwriting or repeating test evaluation is rejected. Interrupted runs retain their artifacts and stop. Test results must not be used to reselect or retrain models. The final choice comes from validation and the freeze record, not the test table.
 
-## CPU计时及限制
+## CPU timing and limitations
 
-复用timing_protocol.json中的队友30张固定图片和三次图片顺序，按stem映射原始jpg；队友png是clean派生副本。计时前加载解码RGB。CPU batch1、4 threads，每repeat先5次warmup，再30图，重复3次。
+`timing_protocol.json` reuses the teammate's 30 fixed images and three image orders. Stems map to original JPG files; the teammate's PNG files are clean derived copies. Images are loaded and decoded to RGB before timing. CPU batch size=1 and threads=4, with five warmups followed by 30 images per repeat, repeated three times.
 
-计时含PIL-to-tensor、normalization、resize、模型、NMS和恢复原坐标；不含磁盘解码、模型加载、绘图、evaluator。输出每次总秒数、每图延迟和FPS；汇总FPS=90/sum(seconds)，不平均单次FPS。
+Timing includes PIL-to-tensor conversion, normalization, resizing, model execution, NMS, and restoration of original coordinates. Disk decoding, model loading, drawing, and evaluation are excluded. Each repeat reports total seconds, per-image latency, and FPS. Aggregate FPS=90/sum(seconds), rather than the mean of individual repeat FPS values.
 
-重要：队友CPU为Family6 Model170，本机i9-13980HX为Model183；队友Torch2.15CPU，本环境2.6CUDA（计时用CPU）。相同流程不能消除软硬件差异；严格速度比较需要双方模型在同一机器环境重测，不能把目前FPS差异直接归因于架构。
+The teammate's CPU is Family 6 Model 170; the author's i9-13980HX is Model 183. The teammate recorded Torch 2.15 CPU, while this environment used Torch 2.6 CUDA with inference on the CPU for timing. Identical timing procedures do not eliminate hardware/software differences. A strict speed comparison requires both models to be measured on the same machine and environment; current FPS differences cannot be attributed directly to architecture.
 
-## 新克隆安装与运行
+## Setup and execution from a fresh clone
 
-以下命令从仓库根目录执行。使用 Python 3.12 新建本仓库自己的环境：
+Run these commands from the repository root. Use Python 3.12 to create an environment within this repository:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-# 原实验使用的 CUDA 12.4 构建；需自行具备兼容的 NVIDIA 驱动/GPU
+# CUDA 12.4 build used in the recorded run; requires a compatible NVIDIA driver/GPU
 python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
 python -m pip install -r faster_rcnn/requirements.txt
 python -m faster_rcnn.fetch_evaluator
 python -m faster_rcnn.fetch_evaluator --check
 ```
 
-若只使用CPU，将上面的torch安装命令改为 `python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu`。Linux/macOS激活方式为 `source .venv/bin/activate`，硬件对应的torch构建需自行选择。上述为安装说明；本次没有从零安装所有平台或重现CPU训练，不能据此声称跨平台已验证。依赖版本来自现有实验环境快照。
+For CPU-only use, replace the torch installation command with `python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu`. On Linux/macOS, activate with `source .venv/bin/activate` and select a torch build appropriate to the hardware. These are installation instructions, not evidence that fresh installations on every platform or CPU training have been validated. Dependency versions are a snapshot of the existing experiment environment.
 
-只查看结果无需数据、权重或训练：打开 `faster_rcnn/results/results.csv`，或安装依赖后用 `FasterRCNN.ipynb` 查看精选表。
+Viewing the recorded results requires no dataset, checkpoints, or training: open `faster_rcnn/results/results.csv`, or use `FasterRCNN.ipynb` after installing its dependencies.
 
-默认数据入口固定Kaggle `liugalhigh/beach-bird/versions/3`；本地数据可通过 `--data-root`、环境变量 `FASTER_RCNN_DATA_ROOT`，或 `--data-config faster_rcnn/data_config.example.json` 设置。模板路径相对于配置文件目录，结构为 `images/{train,val,test}` 和 `labels/{train,val,test}`。本地目录必须由提供者确认是v3，路径声明不等于已验证数据身份；可与已有manifest比对。不要提交填入个人路径的配置副本。
+The default dataset is pinned to Kaggle `liugalhigh/beach-bird/versions/3`. Set a local root with `--data-root`, the `FASTER_RCNN_DATA_ROOT` environment variable, or `--data-config faster_rcnn/data_config.example.json`. Template paths are relative to the configuration file's directory. Expected structure: `images/{train,val,test}` and `labels/{train,val,test}`. The provider must confirm a local directory is version 3; a path declaration does not verify dataset identity. Compare manifests when available. Do not commit configuration copies containing personal paths.
 
 ```powershell
 python -m faster_rcnn.run --help
 python -m faster_rcnn.pipeline --help
-# 可选：审计和独立功能检查；verify可能下载COCO权重，不训练模型
+# Optional audit and independent functional checks; verify may download COCO weights but does not train
 python -m faster_rcnn.run audit --data-root "data/Beach Bird Detection Dataset v1.0"
 python -m faster_rcnn.verify
-# 以下是新实验的复现命令，不是查看已有结果的必要步骤
+# Reproduction commands for new experiments; not required to view recorded results
 python -m faster_rcnn.run train --experiment A --data-config faster_rcnn/data_config.example.json
 python -m faster_rcnn.run robust --experiment A --data-config faster_rcnn/data_config.example.json
 python -u -m faster_rcnn.pipeline --data-config faster_rcnn/data_config.example.json
 ```
 
-train支持A-D；E由pipeline按validation证据生成。完整pipeline会训练、冻结并最终评估test，不要为比较现有结果重复执行；已有输出目录会拒绝覆盖。新克隆不包含checkpoint，`robust/test/timing`必须先具备对应的本地权重，不能仅凭精选结果文件运行。原始冻结记录位于 `results/`，不自动复制到新实验的 `outputs/`。
+`train` supports A-D; the pipeline derives E from validation evidence. The complete pipeline trains, freezes, and finally evaluates test data. Do not rerun it merely to compare existing results; existing output directories reject overwriting. A fresh clone contains no checkpoints: `robust/test/timing` require the corresponding local weights and cannot run from result summaries alone. Original freeze records in `results/` are not automatically copied into a new experiment's `outputs/`.
 
-协作入口的检查命令为 `python -m unittest faster_rcnn.tests.test_submission -v`。本次整理已在临时源码导出目录验证固定wheel获取/校验、CLI入口、五项单元检查和隐藏CUDA后的CPU功能检查；使用的仍是原有实验依赖环境，不是全新安装或所有平台验证，也没有运行训练或数据集test。原始 `outputs/verification.json` 未覆盖；`results/verification.json` 保留原实验记录。
+Run collaboration checks with `python -m unittest faster_rcnn.tests.test_submission -v`. Submission preparation verified pinned-wheel acquisition/checking, CLI entry points, five unit checks, and CPU functional checks with CUDA hidden in a temporary source export. It used the existing experiment dependencies, not a fresh installation or all-platform validation, and did not run training or dataset test inference. The original `outputs/verification.json` was not overwritten; `results/verification.json` preserves the original experiment record.
 
-## 产物、时间及提交
+## Artifacts, timing, and submission
 
-- audit.json：split统计、异常、train缩放框分布及环境。
-- verification.json、teammate_alignment.json：功能/evaluator/数据一致性证据。
-- A-E的config.json、data_manifest.json、history.json、summary.json、best/last.pth。
-- best_val_predictions.json，val/test五条件原图坐标预测与CSV/JSON指标。
-- failures/：validation失败图、索引、学习曲线。
-- improvement_plan.json、freeze.json、cpu_timing.json。
-- results.csv/json：区分split，mAP50、mAP50-95、固定点P/R、训练秒数、CPU延迟/FPS、所选epoch和配置。
-- status.json与pipeline stdout/stderr：进度和异常traceback。
+- `audit.json`: split counts, anomalies, scaled train-box statistics, and environment details.
+- `verification.json` and `teammate_alignment.json`: functional, evaluator, and dataset consistency evidence.
+- A-E `config.json`, `data_manifest.json`, `history.json`, `summary.json`, and best/last `.pth` checkpoints.
+- `best_val_predictions.json`, original-coordinate predictions for the five validation/test conditions, and CSV/JSON metrics.
+- `failures/`: validation failure figures, case indexes, and learning curves.
+- `improvement_plan.json`, `freeze.json`, and `cpu_timing.json`.
+- `results.csv/json`: split-specific mAP50, mAP50-95, fixed-threshold P/R, training seconds, CPU latency/FPS, selected epochs, and configurations.
+- `status.json` and pipeline stdout/stderr logs: progress and exception tracebacks.
 
-训练耗时含训练loader和计算，排除验证/保存，不等于完整pipeline墙钟耗时。提交源码ZIP排除权重、输入图片和结果图片，遵守课程25MB限制。
+Training duration includes the training loader and computation but excludes validation and saving; it is not total pipeline wall time. The final course source ZIP must exclude weights, input images, and result images and respect the 25 MB limit.
 
-来源：旧CompVis数据/训练代码经独立复制修改；重新设定优化器、缩放、anchors、checkpoint标准和evaluator。模型依赖TorchVision；评估复用固定官方Ultralytics wheel。方法参考Ren et al., Faster R-CNN (NeurIPS2015)、Lin et al., FPN (CVPR2017)。数据：Kai Liu, Beach Bird Detection Dataset v1.0, Kaggle version3。
+Sources: the earlier local CompVis data/training implementation was copied independently and revised for the optimizer, resizing, anchors, checkpoint criterion, and evaluator. Models use TorchVision; evaluation reuses the pinned official Ultralytics wheel. Method references: Ren et al., Faster R-CNN (NeurIPS 2015), and Lin et al., FPN (CVPR 2017). Dataset: Kai Liu, Beach Bird Detection Dataset v1.0, Kaggle version 3.
