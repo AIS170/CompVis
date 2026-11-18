@@ -1,0 +1,33 @@
+{
+  "checks": "flip/box alignment, exact IoU matching, perfect-detection AP, actual resize, FPN levels, detection cap passed",
+  "example_resize_hw": [
+    [
+      666,
+      1333
+    ]
+  ],
+  "padded_shape": [
+    1,
+    3,
+    672,
+    1344
+  ],
+  "torch": "2.6.0+cu124",
+  "torchvision": "0.21.0+cu124",
+  "numpy": "2.5.4",
+  "python": "3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "13th Gen Intel Core i9-13980HX",
+  "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+  "amp": false,
+  "gradient_accumulation": 1,
+  "threads": 4,
+  "wheel_sha256": "e4798477691ce744e84bfb31d7d7cff2a0875846533d4f330f19d41c477c932e",
+  "function_sha256": {
+    "box_iou": "7d1b215b0e68fab7f4765617175d9326c3dfd2bb83318dddd169794b40369a68",
+    "smooth": "db79966325994dee9d75940eae6c0b94b5245d549674d4ad2739a5f425827c9b",
+    "compute_ap": "633f97f888c37d694314d7c069ee99c14036f92e2222635045136cbd06a95cf7",
+    "ap_per_class": "bcebc4300567afb63c1636c8b6825262a1477651f18a9930c6e89080f7d1e794",
+    "match_predictions": "d525b935fd4770f5670964dcdf07ec7721554410e0b829c51879c9a5e73d2000"
+  }
+}

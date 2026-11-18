@@ -1,0 +1,12 @@
+# Snapshot of the environment used for the recorded run (Python 3.12.4).
+# Install torch==2.6.0 and torchvision==0.21.0 for your platform separately.
+# The recorded GPU build was +cu124. A fresh CPU installation has not been
+# used to reproduce the recorded training or speed results.
+numpy==2.5.4
+Pillow==13.0.0
+kagglehub==1.0.3
+tqdm==4.70.1
+matplotlib==3.11.2
+pandas==3.1.1
+ipykernel==7.4.0
+jupyter==1.1.1

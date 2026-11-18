@@ -15,3 +15,37 @@ __pycache__/
 *.pkl
 
 outputs/
+
+# Local credentials (a sanitized example may be shared)
+.env
+.env.*
+!.env.example
+kaggle.json
+credentials.json
+*.pem
+*.key
+
+# Additional environments, caches and model artifacts
+venv/
+env/
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.py[cod]
+*.cache
+*.ckpt
+*.safetensors
+*.onnx
+*.log
+*.tmp
+
+# Dataset copies and downloaded third-party distributions
+/data/
+/dataset/
+/datasets/
+/faster_rcnn/vendor/*.whl
+/faster_rcnn/vendor/*.download
+
+# Local working checklist; maintained separately from project documentation
+/SUBMISSION_CHECKLIST.md

@@ -46,3 +46,8 @@ The notebook will automatically download the **Beach Bird Detection Dataset** us
 Once the dataset has been downloaded, you can begin developing your respective models.
 
 **Important:** Always run `git pull origin main` before starting work to ensure you have the latest project files.
+
+
+## Faster R-CNN
+
+Completed Faster R-CNN experiments: [protocol and setup](faster_rcnn/README.md), [frozen results](faster_rcnn/results/README.md), and [comparison CSV](faster_rcnn/results/results.csv). The validation-selected final model is D. Original YOLO files are unchanged.

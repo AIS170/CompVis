@@ -1,0 +1,6 @@
+{
+  "teammate_test_original_hashes": 240,
+  "validation_corruption_pixels": 1455,
+  "validation_corruption_labels": 1455,
+  "test_used_for": "file/annotation identity only, no predictions or tuning"
+}
