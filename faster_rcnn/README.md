@@ -6,7 +6,7 @@ Experiments A-E are complete. The frozen final model is **D**. Use the [selected
 
 The recorded environment was Python 3.12.4, PyTorch 2.6.0+cu124, TorchVision 0.21.0+cu124, an RTX 4070 Laptop GPU with 8 GB of memory, and an Intel Core i9-13980HX CPU. CPU timing used four threads. These are historical experiment details, not claims about a teammate's hardware or a fresh installation. Standalone setup instructions are below; no sibling repository or personal environment is required. The course specification was reviewed, and the experiment follows the protocol requested for this project.
 
-The dataset is located through `kagglehub.dataset_download('liugalhigh/beach-bird/versions/3')`, followed by inspection of its actual directory structure. The local path is recorded in the uncommitted `outputs/audit.json`. Images in `images/{train,val,test}` correspond to annotations in `labels/{train,val,test}`. YOLO class-0 normalized `xc yc w h` annotations are converted to absolute original-image `xyxy` coordinates, with bird=1 and background=0. The original splits are preserved.
+The dataset is located through `kagglehub.dataset_download('liugalhigh/beach-bird/versions/3')`, followed by inspection of its actual directory structure. Alternatively, configure your own dataset root using the options below; no author's local path or uncommitted audit file is needed. Images in `images/{train,val,test}` correspond to annotations in `labels/{train,val,test}`. YOLO class-0 normalized `xc yc w h` annotations are converted to absolute original-image `xyxy` coordinates, with bird=1 and background=0. The original splits are preserved.
 
 | Split | Images | Boxes | Negative images | Classes |
 |---|---:|---:|---:|---:|
@@ -16,7 +16,7 @@ The dataset is located through `kagglehub.dataset_download('liugalhigh/beach-bir
 
 Every image was decoded and checked for missing annotations, non-finite or invalid boxes, out-of-bounds coordinates, empty annotations, duplicate stems, and orphan labels. No issues were found. Negative images retain empty `(0,4)` boxes. Invalid input raises an error rather than being silently discarded; clipping is allowed only within a normalized-coordinate floating-point tolerance of 1e-6. RGB conversion occurs in memory without modifying source data. Training records SHA256 manifests for train/validation images and annotations. Initial test access was limited to structural and file-identity auditing, without predictions or tuning.
 
-`results/teammate_alignment.json` records matching SHA256 values for all 240 original test images and annotations in the teammate's protocol. All 1455 derived validation images across five conditions matched pixel-for-pixel, and their 1455 annotation copies matched byte-for-byte.
+[The alignment summary](results/teammate_alignment.json) records the counts of successful SHA256 identity checks for all 240 original test images and annotations in the teammate's protocol; it does not contain the individual file hashes. All 1455 derived validation images across five conditions matched pixel-for-pixel, and their 1455 annotation copies matched byte-for-byte.
 
 ## Model and training configuration
 
@@ -43,7 +43,9 @@ Validation and test data receive no random training augmentation.
 
 ## Evaluator and group alignment
 
-The original `box_iou`, `compute_ap`, `ap_per_class`, `match_predictions`, and supporting functions are extracted directly from the official Ultralytics 8.4.208 wheel, matching the teammate's recorded version. COCO AP is not substituted for YOLO AP. The wheel's package initialization is not executed, and a second Ultralytics installation is unnecessary. The wheel is not committed: `python -m faster_rcnn.fetch_evaluator` downloads it from a pinned PyPI file URL, and its SHA256 is checked before every load. See `evaluator.lock.json` for the source, version, and hash; `THIRD_PARTY.md` for attribution; and `results/verification.json` for recorded function hashes. Acquisition does not alter the original AP or matching logic.
+The original `box_iou`, `compute_ap`, `ap_per_class`, `match_predictions`, and supporting functions are extracted directly from the official Ultralytics 8.4.208 wheel, matching the teammate's recorded version. COCO AP is not substituted for YOLO AP. The wheel's package initialization is not executed, and a second Ultralytics installation is unnecessary. The wheel is not committed: `python -m faster_rcnn.fetch_evaluator` requires network access to the pinned `files.pythonhosted.org` URL when the wheel is absent. An existing valid local wheel is reused, and `--check` verifies it without network access. SHA256 is checked before every load. See [the evaluator lock](evaluator.lock.json) for the source, version, and hash, [third-party attribution](THIRD_PARTY.md), and [the original verification record](results/verification.json) for function hashes. Acquisition does not alter the original AP or matching logic.
+
+The local distribution metadata identifies version 8.4.208 and license AGPL-3.0, includes `ultralytics-8.4.208.dist-info/licenses/LICENSE`, and matches SHA256 `e4798477691ce744e84bfb31d7d7cff2a0875846533d4f330f19d41c477c932e` in the lock and original verification record. `THIRD_PARTY.md` describes compiling the selected original functions without installing/importing the full package. These are verified attribution and implementation facts, not a conclusion about license compliance or an exemption based on downloading the dependency separately; any unresolved distribution obligations require review before redistribution.
 
 YOLO bird class 0 maps to Faster R-CNN bird class 1. AP uses IoU=.50:.05:.95, the upstream 101-point interpolation/integration, and `use_scipy=False` matching and deduplication. The ROI head retains scores >.001, and returned predictions are exported directly, satisfying the .001 confidence cutoff. Each image has at most 300 final detections. Precision/recall first filter confidence>=.25, then recompute matching with the same upstream matcher at IoU>=.50 and aggregate global micro TP/FP/FN. An automatically selected maximum-F1 threshold is not used.
 
@@ -59,11 +61,13 @@ After A-D validation, representative cases are selected by FN, FP, bird count, a
 
 The E design rule was fixed before test evaluation: select the A-D base model with the highest five-condition validation mean AP50-95, compare strong-darkness and strong-blur AP, and change only one training parameter targeting the weaker condition. The recorded base was D, the weaker condition was blur, and E's sole change was blur_probability .3 -> .6. E restarted from COCO weights with the same remaining settings and training budget. `results/improvement_plan.json` records the rationale. Both E and its base model's validation results are retained, without assuming E improves performance. The final frozen selection remained D.
 
-After A-E validation, the final model is selected by five-condition validation mean AP50-95, breaking ties alphabetically. `freeze.json` records that choice and all checkpoint SHA256 values. Each final model/condition then receives one test evaluation. Output directories must be new; overwriting or repeating test evaluation is rejected. Interrupted runs retain their artifacts and stop. Test results must not be used to reselect or retrain models. The final choice comes from validation and the freeze record, not the test table.
+After A-E validation, the final model is selected by five-condition validation mean AP50-95, breaking ties alphabetically. [The original freeze record](results/freeze.json) records that choice and all checkpoint SHA256 values. Each final model/condition then receives one test evaluation. Output directories must be new; overwriting or repeating test evaluation is rejected. Interrupted runs retain their artifacts and stop. Test results must not be used to reselect or retrain models. D remains the validation-frozen final model. The recorded checkpoint hashes identify the original experiment's weight files; those files are not supplied in this repository and cannot be reconstructed or downloaded from a hash alone.
 
 ## CPU timing and limitations
 
-`timing_protocol.json` reuses the teammate's 30 fixed images and three image orders. Stems map to original JPG files; the teammate's PNG files are clean derived copies. Images are loaded and decoded to RGB before timing. CPU batch size=1 and threads=4, with five warmups followed by 30 images per repeat, repeated three times.
+[The copied timing protocol](timing_protocol.json) matches the teammate's original `benchmark_settings.json` from benchmark `20261115_153901`, whose field is `warmup_calls_per_model_per_repeat=5`. The teammate's notebook also places the warmup loop inside the repeat/model loops. Both implementations therefore perform **five warmup calls before each repeat for each model: 15 warmup calls per model across three repeats, not five calls in total**. Each repeat then measures 30 images, giving 90 timed images per model. Warmups are excluded from the reported duration. The existing timing results were not rerun for this documentation review because the warmup counts already agree.
+
+The same 30 image names and three timed-image orders are used. Stems map to original JPG files; the teammate's PNG files are clean derived copies. Images are loaded and decoded to RGB before timing. CPU batch size=1 and threads=4. The current Faster R-CNN implementation warms up on canonical image indices 0-4 before every repeat, retains one loaded model across repeats, and times the whole 30-image loop. The teammate warms up on the first five images of that repeat's shuffled order, reloads the model for each model/repeat, and sums separately timed prediction calls. Thus warmup count and timed-image order agree, but warmup-image choice, model lifecycle, and timing boundaries are not identical. A strict timing comparison must first agree on those details and use the same hardware/software; any necessary rerun should be CPU timing only, not accuracy test evaluation.
 
 Timing includes PIL-to-tensor conversion, normalization, resizing, model execution, NMS, and restoration of original coordinates. Disk decoding, model loading, drawing, and evaluation are excluded. Each repeat reports total seconds, per-image latency, and FPS. Aggregate FPS=90/sum(seconds), rather than the mean of individual repeat FPS values.
 
@@ -71,24 +75,45 @@ The teammate's CPU is Family 6 Model 170; the author's i9-13980HX is Model 183. 
 
 ## Setup and execution from a fresh clone
 
-Run these commands from the repository root. Use Python 3.12 to create an environment within this repository:
+The following are Windows PowerShell recipes, run from the repository root with Python 3.12. Create and activate an environment first:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-# CUDA 12.4 build used in the recorded run; requires a compatible NVIDIA driver/GPU
+```
+
+Choose **one** torch installation block. For the CUDA 12.4 build used in the recorded run, with a compatible NVIDIA driver/GPU:
+
+```powershell
 python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
-python -m pip install -r faster_rcnn/requirements.txt
+@('torch==2.6.0+cu124', 'torchvision==0.21.0+cu124') | Set-Content -Encoding ascii .venv/torch-constraints.txt
+```
+
+For CPU-only use, choose this block instead:
+
+```powershell
+python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+@('torch==2.6.0+cpu', 'torchvision==0.21.0+cpu') | Set-Content -Encoding ascii .venv/torch-constraints.txt
+```
+
+Then install the remaining requirements under the selected torch constraints and check the resolved environment:
+
+```powershell
+python -m pip install -c .venv/torch-constraints.txt -r faster_rcnn/requirements.txt
+python -m pip check
+python -c "import torch, torchvision; print(torch.__version__, torchvision.__version__); print('CUDA available:', torch.cuda.is_available())"
 python -m faster_rcnn.fetch_evaluator
 python -m faster_rcnn.fetch_evaluator --check
 ```
 
-For CPU-only use, replace the torch installation command with `python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu`. On Linux/macOS, activate with `source .venv/bin/activate` and select a torch build appropriate to the hardware. These are installation instructions, not evidence that fresh installations on every platform or CPU training have been validated. Dependency versions are a snapshot of the existing experiment environment.
+[The requirements file](requirements.txt) does not itself request torch, torchvision, or the full Ultralytics package. Install the chosen torch pair first; the constraints ensure any later dependency request must remain compatible with that exact CPU/CUDA pair rather than silently selecting another build. Keep these constraints on subsequent installs into this environment. Installation requires network access unless the corresponding packages are already available locally. The CUDA availability output is a diagnostic, not an automatic guarantee of driver compatibility or successful training.
+
+The recorded Windows CUDA environment and earlier CPU checks with CUDA hidden are the only validation evidence described here. The revised install recipes were inspected but were not executed into a fresh environment during this review. A CPU-only wheel installation, Linux/macOS setup, and cross-platform reproduction are not claimed as validated. The Windows `+cpu`/`+cu124` constraints are not universal platform instructions. Dependency versions are a snapshot of the original environment, not proof of current package availability on every platform.
 
 Viewing the recorded results requires no dataset, checkpoints, or training: open `faster_rcnn/results/results.csv`, or use `FasterRCNN.ipynb` after installing its dependencies.
 
-The default dataset is pinned to Kaggle `liugalhigh/beach-bird/versions/3`. Set a local root with `--data-root`, the `FASTER_RCNN_DATA_ROOT` environment variable, or `--data-config faster_rcnn/data_config.example.json`. Template paths are relative to the configuration file's directory. Expected structure: `images/{train,val,test}` and `labels/{train,val,test}`. The provider must confirm a local directory is version 3; a path declaration does not verify dataset identity. Compare manifests when available. Do not commit configuration copies containing personal paths.
+The default dataset is pinned to Kaggle `liugalhigh/beach-bird/versions/3`; downloading an uncached copy requires network access and any authentication required by Kaggle. Set your own local root with `--data-root`, the `FASTER_RCNN_DATA_ROOT` environment variable, or `--data-config faster_rcnn/data_config.example.json`. [The example configuration](data_config.example.json) resolves paths relative to its own directory, so its `../data/Beach Bird Detection Dataset v1.0` value points to `data/Beach Bird Detection Dataset v1.0` under the repository root. Expected structure: `images/{train,val,test}` and `labels/{train,val,test}`. The provider must confirm a local directory is version 3; a path declaration does not verify dataset identity. Compare manifests when available. Do not commit configuration copies containing personal paths. No dataset is included in the repository.
 
 ```powershell
 python -m faster_rcnn.run --help
@@ -106,16 +131,32 @@ python -u -m faster_rcnn.pipeline --data-config faster_rcnn/data_config.example.
 
 Run collaboration checks with `python -m unittest faster_rcnn.tests.test_submission -v`. Submission preparation verified pinned-wheel acquisition/checking, CLI entry points, five unit checks, and CPU functional checks with CUDA hidden in a temporary source export. It used the existing experiment dependencies, not a fresh installation or all-platform validation, and did not run training or dataset test inference. The original `outputs/verification.json` was not overwritten; `results/verification.json` preserves the original experiment record.
 
-## Artifacts, timing, and submission
+## Committed results and local artifacts
 
-- `audit.json`: split counts, anomalies, scaled train-box statistics, and environment details.
-- `verification.json` and `teammate_alignment.json`: functional, evaluator, and dataset consistency evidence.
-- A-E `config.json`, `data_manifest.json`, `history.json`, `summary.json`, and best/last `.pth` checkpoints.
-- `best_val_predictions.json`, original-coordinate predictions for the five validation/test conditions, and CSV/JSON metrics.
-- `failures/`: validation failure figures, case indexes, and learning curves.
-- `improvement_plan.json`, `freeze.json`, and `cpu_timing.json`.
-- `results.csv/json`: split-specific mAP50, mAP50-95, fixed-threshold P/R, training seconds, CPU latency/FPS, selected epochs, and configurations.
-- `status.json` and pipeline stdout/stderr logs: progress and exception tracebacks.
+The committed result directory contains exactly these six files:
+
+- [results/README.md](results/README.md): result definitions and comparison limitations.
+- [results/results.csv](results/results.csv): 50 rows covering A-E, validation/test, and five conditions.
+- [results/freeze.json](results/freeze.json): original validation-selected final model D and checkpoint hashes.
+- [results/improvement_plan.json](results/improvement_plan.json): the validation-led E design and its single change.
+- [results/verification.json](results/verification.json): original environment, functional checks, wheel hash, and function hashes.
+- [results/teammate_alignment.json](results/teammate_alignment.json): historical consistency-check counts, not per-file hashes.
+
+The CSV columns match the actual file:
+
+| Column(s) | Definition |
+|---|---|
+| `experiment`, `split`, `condition` | A-E; `val` or final held-out `test`; one of the five fixed conditions |
+| `map_50`, `map_50_95` | Fractional AP at IoU 0.50 and mean AP over 0.50:0.05:0.95 |
+| `precision`, `recall`, `tp`, `fp`, `fn` | Global micro metrics/counts at confidence >=0.25 and matching IoU >=0.50 |
+| `selected_epoch` | Best clean-validation AP50-95 epoch, earliest on ties |
+| `training_seconds` | Sum of training-only epoch durations, excluding validation and checkpoint saving |
+| `cpu_seconds_per_image`, `cpu_fps` | One clean-image CPU benchmark per model, repeated across its validation/test and corruption rows; not per-condition timing |
+| `config` | JSON-encoded settings for that experiment |
+
+For three equal 30-image repeats, mean per-image latency is sum(repeat seconds)/90 and aggregate FPS is 90/sum(repeat seconds). The repository does not include `results/results.json`; the CSV is the single committed numerical summary.
+
+Full local runtime outputs can contain manifests, epoch histories, checkpoints, bulk predictions, timing details, failure figures, and logs. They are generated under ignored `outputs/` and are not prerequisites for reading the committed tables. A fresh clone does not contain those files or trained weights. Checkpoint hashes in the committed records are identifiers from the original run, not included weight files. To run checkpoint-dependent commands, obtain the original weights separately through the group's agreed mechanism and verify the corresponding recorded hash, or conduct a clearly separate new experiment without overwriting the frozen records. Neither is required for this documentation review.
 
 Training duration includes the training loader and computation but excludes validation and saving; it is not total pipeline wall time. The final course source ZIP must exclude weights, input images, and result images and respect the 25 MB limit.
 
