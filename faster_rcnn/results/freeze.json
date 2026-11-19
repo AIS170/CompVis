@@ -1,0 +1,57 @@
+{
+  "models": {
+    "A": "710a9babf540ceb8f8b9b92bcf5f7fcf4d21e8d1fe97f5dc5d7b0e82a140c05a",
+    "B": "56c80b739848153e0bf36fdb6bad6845ce82541ea0199a5c7f554e11315f426c",
+    "C": "9e942d5e8dd23f5db2e7c0586cc56b0295d8ab80c14ec96ced3bdeddc754c2ce",
+    "D": "2d2b1ce8a233dd29215d56bf253b7673ca2bf804767c0fa5a33207613d4a8393",
+    "E": "d45f514653ff9bd9c020275ac565fe0a189b8ca815b663fe05953fed05c1ea4e"
+  },
+  "final_choice": "D",
+  "selection": "maximum mean five-condition validation AP50-95; alphabetical tie",
+  "test_tuning": false,
+  "improvement": {
+    "base": "D",
+    "weakness": "blur",
+    "hypothesis": "Target the larger strong-corruption validation AP deficit with one training-only change",
+    "single_change": "blur_probability 0.3 -> .6",
+    "config": {
+      "epochs": 15,
+      "batch_size": 2,
+      "seed": 42,
+      "lr": 0.005,
+      "weight_decay": 0.0005,
+      "image_size": 800,
+      "max_size": 1333,
+      "anchor_sizes": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "max_detections": 300,
+      "score_threshold": 0.001,
+      "nms_iou": 0.7,
+      "pr_confidence": 0.25,
+      "workers": 0,
+      "horizontal_flip_probability": 0.5,
+      "photometric_probability": 0.5,
+      "contrast_range": [
+        0.8,
+        1.2
+      ],
+      "brightness_range": [
+        -25.5,
+        25.5
+      ],
+      "blur_probability": 0.6,
+      "blur_radius_range": [
+        0.5,
+        2.0
+      ],
+      "dark_probability": 0.0
+    },
+    "selection_data": "validation only; test never consulted",
+    "initialization": "fresh COCO weights; same seed and epoch budget"
+  }
+}

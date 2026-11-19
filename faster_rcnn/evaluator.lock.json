@@ -1,0 +1,11 @@
+{
+  "package": "ultralytics",
+  "version": "8.4.208",
+  "filename": "ultralytics-8.4.208-py3-none-any.whl",
+  "url": "https://files.pythonhosted.org/packages/22/fb/9973434a136ab921a9b7f3a3083936722fd8a6cb19a4712e92f997490a34/ultralytics-8.4.208-py3-none-any.whl",
+  "metadata_url": "https://pypi.org/pypi/ultralytics/8.4.208/json",
+  "sha256": "e4798477691ce744e84bfb31d7d7cff2a0875846533d4f330f19d41c477c932e",
+  "license": "AGPL-3.0",
+  "source": "https://github.com/ultralytics/ultralytics",
+  "purpose": "Pinned upstream metric functions; distribution is not installed or committed."
+}
